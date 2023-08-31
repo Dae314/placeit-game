@@ -1,0 +1,21 @@
+{
+	"name": "placeit-game",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"deploy": "npm run build && gh-pages -r https://github.com/Dae314/placeit-game -d build -t true"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.20.4",
+		"gh-pages": "^6.0.0",
+		"sass": "^1.66.1",
+		"svelte": "^4.0.5",
+		"vite": "^4.4.2"
+	},
+	"type": "module"
+}

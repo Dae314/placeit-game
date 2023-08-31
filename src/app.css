@@ -1,0 +1,18 @@
+html {
+	--appColorPrimary: #F64C72;
+	--appColorPriAccent: #553D67;
+	--appBGColor: #383845;
+	--appBGColorAccent: #2F2FA2;
+	--appAccentColor: #99738E;
+	--appTextColor: #FFF;
+}
+
+body {
+	background-color: var(--appBGColor);
+	color: var(--appTextColor);
+	font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+h1 {
+	font-size: 2rem;
+}

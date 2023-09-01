@@ -2,6 +2,11 @@
 	box-sizing: inherit;
 }
 
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
 html {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
@@ -9,14 +14,18 @@ html {
 	--appColorPriAccent: #88c0d0;
 	--appBGColor: #2e3440;
 	--appBGColorAccent: #4c566a;
-	--appAccentColor: #8fbcbb;
+	--appAccentColor: #a3be8c;
 	--appTextColor: #eceff4;
+	--appLogoColor1: #bf616a;
+	--appLogoColor2: #ebcb8b;
 }
 
 body {
 	background-color: var(--appBGColor);
 	color: var(--appTextColor);
 	font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	height: 100vh;
+	width: 100vw;
 }
 
 h1 {

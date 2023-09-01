@@ -3,9 +3,10 @@
 </script>
 
 <div class="container">
-	<h1>PlaceIt</h1>
+	<h1><span class="logo1">Place</span><span class="logo2">It</span></h1>
+	<h2>A game about numbers and places</h2>
 
-	<a href="{base}/game">Begin</a>
+	<a href="{base}/game">Play</a>
 </div>
 
 <style lang="scss">
@@ -13,19 +14,45 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 		justify-content: center;
+		width: 100%;
+	}
+	h1 {
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 8rem;
+		margin: 0;
+		margin-bottom: -30px;
+		.logo1 {
+			color: var(--appLogoColor1);
+		}
+		.logo2 {
+			color: var(--appLogoColor2);
+		}
+	}
+	h2 {
+		color: var(--appLogoColor2);
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 1.5rem;
+		margin: 0;
+		margin-bottom: 20px;
 	}
 	a {
 		align-items: center;
-		background-color: var(--appColorPrimary);
-		border-radius: 5px;
-		color: var(--appTextColor);
+		border-radius: 10px;
+		color: var(--appAccentColor);
 		cursor: pointer;
 		display: flex;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 3.5rem;
 		font-weight: bold;
-		height: 50px;
 		justify-content: center;
+		padding: 10px;
 		text-decoration: none;
-		width: 150px;
+		user-select: none;
+		transition: all 0.2s;
+		&:hover {
+			background-color: rgba(94, 129, 172, 0.10);
+		}
 	}
 </style>

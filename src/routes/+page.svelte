@@ -1,2 +1,25 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { getContext, onMount } from 'svelte';
+	import Welcome from '$lib/modals/Welcome.svelte';
+	import { AppData, saveAppData } from '$lib/stores/AppData.js';
+
+	const { open } = getContext('simple-modal');
+
+	onMount(() => {
+		open(Welcome, {});
+		saveAppData();
+	});
+</script>
+
+<div class="container">
+	<div class="rollArea">
+		<span>100</span>
+	</div>
+	<div class="tableArea">
+		<span>Table goes here</span>
+	</div>
+</div>
+
+<style lang="scss">
+
+</style>

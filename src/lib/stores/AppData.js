@@ -41,7 +41,7 @@ function buildAppData(data) {
 		{name: 'appSettings', default: {}, reset: false},
 	];
 	const expectedAppSettingsProps = [
-		{name: 'showWelcome', default: false, reset: false},
+		{name: 'showRules', default: false, reset: false},
 	]
 
 	// set the top-level properties first

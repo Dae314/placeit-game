@@ -6,6 +6,6 @@
 </script>
 
 <div>
-	<h2>Image goes here</h2>
-	<button type="button" on:click={() => close()}>Begin</button>
+	<h2>Rules go here</h2>
+	<button type="button" on:click={() => close()}>Dismiss</button>
 </div>

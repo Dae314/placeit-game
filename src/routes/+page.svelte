@@ -6,26 +6,40 @@
 	const { open } = getContext('simple-modal');
 
 	const numBuckets = 20;
-	const rollMin = 0;
-	const rollMax = 999;
-	const bucketList = new Array(numBuckets).fill(null);
+	const deckMin = 0;
+	const deckMax = 999;
 
+	let deck;
 	let rollResult;
+	let bucketList;
+	reset();
 
 	onMount(() => {
 		open(Welcome, {});
-		rollResult = roll(rollMin, rollMax);
 	});
 
-	function roll(min, max) {
-		min = Math.ceil(min);
-		max = Math.floor(max);
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+	function drawRandom() {
+		const min = 0;
+		const max = deck.length;
+		const i = Math.floor(Math.random() * (max - min + 1)) + min;
+		const result = deck[i];
+		deck.splice(i, 1);
+		return result;
 	}
 
 	function selectBucket(i) {
-		bucketList[i] = rollResult;
-		rollResult = roll(rollMin, rollMax);
+		bucketList[i].value = rollResult;
+		bucketList[i].disabled = true;
+		rollResult = drawRandom();
+	}
+
+	function reset() {
+		deck = [];
+		for(let i = deckMin; i <= deckMax; i++) {
+			deck.push(i);
+		}
+		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
+		rollResult = drawRandom();
 	}
 </script>
 
@@ -36,9 +50,9 @@
 	<div class="tableArea">
 		{#each bucketList as bucket, i}
 			<div class="bucket">
-				<button class="bucketButton" type="button" on:click={() => selectBucket(i)}>
-					{#if bucket}
-						<span>{bucket}</span>
+				<button class="bucketButton" type="button" on:click={() => selectBucket(i)} disabled={bucket.disabled}>
+					{#if bucket.value}
+						<span>{bucket.value}</span>
 					{:else}
 						<span>?</span>
 					{/if}

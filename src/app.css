@@ -1,10 +1,10 @@
 html {
-	--appColorPrimary: #F64C72;
-	--appColorPriAccent: #553D67;
-	--appBGColor: #383845;
-	--appBGColorAccent: #2F2FA2;
-	--appAccentColor: #99738E;
-	--appTextColor: #FFF;
+	--appColorPrimary: #5e81ac;
+	--appColorPriAccent: #88c0d0;
+	--appBGColor: #2e3440;
+	--appBGColorAccent: #4c566a;
+	--appAccentColor: #8fbcbb;
+	--appTextColor: #eceff4;
 }
 
 body {

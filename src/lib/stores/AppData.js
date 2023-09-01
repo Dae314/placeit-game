@@ -9,25 +9,45 @@ function isObject(data) {
 	return Object.prototype.toString.call(data) === '[object Object]';
 }
 
-// function to build or add in new app data top level structures
-function buildAppData(data) {
-	// reset option causes the associated prop to be reset to default every time the app loads
-	const expectedProps = [
-		{name: 'playerStats', default: {}, reset: false},
-	];
-
+// Apply a template to an object and return the result
+// template should be in the format:
+// [{name: 'propName', default: 'propDefaultVal', reset: false}, ...]
+function objTemplate(template, obj) {
 	// make sure that data is an object (and nothing else)
-	if(!isObject(data)) throw error(500, 'AppData must be a plain Javascript object.');
+	if(!isObject(obj)) throw error(500, 'Object must be a plain Javascript object.');
+
+	// make a copy of the object to start
+	const newObj = JSON.parse(JSON.stringify(obj))
 
 	// data must be an object at this point, so make sure it's consistent with the format we expect
 	// add top-level props as required, and reset props that should be reset
-	for(const prop of expectedProps) {
-		if(prop.reset || !(prop.name in data)) data[prop.name] = prop.default;
+	for(const prop of template) {
+		if(prop.reset || !(prop.name in newObj)) newObj[prop.name] = prop.default;
 	}
 	// delete extra top-level props
-	for(let prop in data) {
-		if(!expectedProps.some(e => e.name === prop)) delete data[prop];
+	for(let prop in newObj) {
+		if(!template.some(e => e.name === prop)) delete data[prop];
 	}
+
+	// everything should be good now, return the clean object
+	return newObj;
+}
+
+// function to build or add in new app data top level structures
+function buildAppData(data) {
+	// reset option causes the associated prop to be reset to default every time the app loads
+	const expectedAppDataProps = [
+		{name: 'playerStats', default: {}, reset: false},
+		{name: 'appSettings', default: {}, reset: false},
+	];
+	const expectedAppSettingsProps = [
+		{name: 'showWelcome', default: false, reset: false},
+	]
+
+	// set the top-level properties first
+	data = objTemplate(expectedAppDataProps, data);
+	// set appSettings properties now that we know it's there
+	data.appSettings = objTemplate(expectedAppSettingsProps, data.appSettings);
 
 	// everything should be good now, return the clean AppData object
 	return data;

@@ -16,7 +16,7 @@
 
 	onMount(async () => {
 		await tick();
-		open(Rules, {});
+		if($AppData.appSettings.showRules) open(Rules, {});
 	});
 
 	function drawRandom() {

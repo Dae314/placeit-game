@@ -25,13 +25,66 @@
 		const i = Math.floor(Math.random() * (max - min + 1)) + min;
 		const result = deck[i];
 		deck.splice(i, 1);
-		return result;
+		rollResult = result;
+		validate();
 	}
 
 	function selectBucket(i) {
 		bucketList[i].value = rollResult;
 		bucketList[i].disabled = true;
-		rollResult = drawRandom();
+		drawRandom();
+		checkWinLoss();
+	}
+
+	function validate() {
+		if(bucketList.every(e => e.value === null)) return;
+
+		const vals = bucketList.filter(e => e.value !== null).map(e => e.value);
+		const minVal = Math.min(...vals);
+		const maxVal = Math.max(...vals);
+
+		if(rollResult < minVal) {
+			const minIdx = bucketList.findIndex(e => e.value === minVal);
+			// set buckets under minIdx to active
+			for(let i = 0; i < minIdx; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = false;
+			}
+			// set buckets over minIdx to disabled
+			for(let i = minIdx+1; i < bucketList.length; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = true;
+			}
+		} else if(rollResult > maxVal) {
+			const maxIdx = bucketList.findIndex(e => e.value === maxVal);
+			// set buckets under maxIdx to disabled
+			for(let i = 0; i < maxIdx; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = true;
+			}
+			// set buckets over maxIdx to active
+			for(let i = maxIdx+1; i < bucketList.length; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = false;
+			}
+		} else {
+			// rollResult must be between minVal and maxVal
+			let insertIdx = 0;
+			while(vals[insertIdx] < rollResult) {
+				insertIdx++;
+			}
+			// vals[insertIdx-1] < rollResult && vals[insertIdx] > rollResult
+			const insertMin = bucketList.findIndex(e => e.value === vals[insertIdx-1]);
+			const insertMax = bucketList.findIndex(e => e.value === vals[insertIdx]);
+			// set buckets below insertMin to disabled
+			for(let i = 0; i < insertMin; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = true;
+			}
+			// set buckets between insertMin and insertMax to active
+			for(let i = insertMin+1; i < insertMax; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = false;
+			}
+			// set buckets above insertMax to disabled
+			for(let i = insertMax+1; i < bucketList.length; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = true;
+			}
+		}
 	}
 
 	function reset() {
@@ -40,7 +93,16 @@
 			deck.push(i);
 		}
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
-		rollResult = drawRandom();
+		drawRandom();
+	}
+
+	function checkWinLoss() {
+		if(bucketList.every(e => e.value !== null)) {
+			console.log('you win');
+		} else if(bucketList.every(e => e.disabled === true)) {
+			console.log('you lose');
+		}
+		// if not a win or loss, continue
 	}
 </script>
 
@@ -78,8 +140,8 @@
 	}
 	.tableArea {
 		display: grid;
-		grid-template-rows: repeat(5, 40px);
-		grid-template-columns: repeat(4, 60px);
+		grid-template-rows: repeat(4, 40px);
+		grid-template-columns: repeat(5, 60px);
 		grid-gap: 5px;
 		justify-content: center;
 		width: 100%;

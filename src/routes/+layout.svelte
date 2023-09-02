@@ -3,6 +3,7 @@
 	import '../app.css'
 </script>
 
-<Modal>
+<Modal
+	styleBg={{ backdropFilter: 'blur(5px)' }}>
 	<slot />
 </Modal>

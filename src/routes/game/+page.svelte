@@ -18,7 +18,7 @@
 
 	onMount(async () => {
 		await tick();
-		if($AppData.appSettings.showRules) open(Rules, {});
+		if($AppData.appSettings.showRules) open(Rules, {}, {closeButton: false, closeOnEsc: false, closeOnOuterClick: false});
 	});
 
 	function drawRandom() {
@@ -117,7 +117,7 @@
 			}
 			saveAppData();
 
-			open(GameOver, { bucketList, state, score, resetCallback: reset });
+			open(GameOver, { bucketList, state, score, resetCallback: reset }, {closeButton: false, closeOnEsc: false, closeOnOuterClick: false});
 		}
 	}
 </script>

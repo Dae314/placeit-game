@@ -40,12 +40,17 @@ function buildAppData(data) {
 		{name: 'playerStats', default: {}, reset: false},
 		{name: 'appSettings', default: {}, reset: false},
 	];
+	const expectedPlayerStatsProps = [
+		{name: 'scoreHistory', default: [], reset: false},
+	];
 	const expectedAppSettingsProps = [
 		{name: 'showRules', default: false, reset: false},
-	]
+	];
 
 	// set the top-level properties first
 	data = objTemplate(expectedAppDataProps, data);
+	// set playerStats properties now that we know it's there
+	data.playerStats = objTemplate(expectedPlayerStatsProps, data.playerStats);
 	// set appSettings properties now that we know it's there
 	data.appSettings = objTemplate(expectedAppSettingsProps, data.appSettings);
 

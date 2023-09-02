@@ -1,6 +1,7 @@
 <script>
 	import { getContext, onMount, tick } from 'svelte';
 	import Rules from '$lib/modals/Rules.svelte';
+	import GameOver from '$lib/modals/GameOver.svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 
 	const { open } = getContext('simple-modal');
@@ -8,6 +9,7 @@
 	const numBuckets = 20;
 	const deckMin = 0;
 	const deckMax = 999;
+	const maxHistory = 20;
 
 	let deck;
 	let rollResult;
@@ -97,12 +99,26 @@
 	}
 
 	function checkWinLoss() {
+		let state;
 		if(bucketList.every(e => e.value !== null)) {
-			console.log('you win');
+			state = 'win';
 		} else if(bucketList.every(e => e.disabled === true)) {
-			console.log('you lose');
+			state = 'lose';
+		} else {
+			state = 'continue';
 		}
-		// if not a win or loss, continue
+
+		if(state !== "continue") {
+			const score = bucketList.filter(e => e.value !== null).length;
+
+			$AppData.playerStats.scoreHistory = [...$AppData.playerStats.scoreHistory, score];
+			if($AppData.playerStats.scoreHistory.length >= maxHistory) {
+				$AppData.playerStats.scoreHistory = $AppData.playerStats.scoreHistory.slice(1, $AppData.playerStats.scoreHistory.length);
+			}
+			saveAppData();
+
+			open(GameOver, { bucketList, state, score, resetCallback: reset });
+		}
 	}
 </script>
 

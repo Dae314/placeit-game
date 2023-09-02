@@ -42,48 +42,42 @@
 		if(bucketList.every(e => e.value === null)) return;
 
 		const vals = bucketList.filter(e => e.value !== null).map(e => e.value);
-		const minVal = Math.min(...vals);
-		const maxVal = Math.max(...vals);
 
-		if(rollResult < minVal) {
-			const minIdx = bucketList.findIndex(e => e.value === minVal);
-			// set buckets under minIdx to active
-			for(let i = 0; i < minIdx; i++) {
+		let leftMax = NaN;
+		for(const val of vals) {
+			if(val < rollResult && (isNaN(leftMax) || val > leftMax)) leftMax = val;
+		}
+		let rightMin = NaN;
+		for(const val of vals) {
+			if(val > rollResult && (isNaN(rightMin) || val < rightMin)) rightMin = val;
+		}
+
+		if(isNaN(leftMax) && !isNaN(rightMin)) {
+			let leftIndex = bucketList.findIndex(e => e.value === rightMin);
+			for(let i = 0; i < leftIndex; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = false;
 			}
-			// set buckets over minIdx to disabled
-			for(let i = minIdx+1; i < bucketList.length; i++) {
+			for(let i = leftIndex + 1; i < bucketList.length; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = true;
 			}
-		} else if(rollResult > maxVal) {
-			const maxIdx = bucketList.findIndex(e => e.value === maxVal);
-			// set buckets under maxIdx to disabled
-			for(let i = 0; i < maxIdx; i++) {
-				if(!bucketList[i].value) bucketList[i].disabled = true;
-			}
-			// set buckets over maxIdx to active
-			for(let i = maxIdx+1; i < bucketList.length; i++) {
+		} else if(!isNaN(leftMax) && isNaN(rightMin)) {
+			let rightIndex = bucketList.findIndex(e => e.value === leftMax);
+			for(let i = rightIndex; i < bucketList.length; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = false;
+			}
+			for(let i = 0; i < rightIndex; i++) {
+				if(!bucketList[i].value) bucketList[i].disabled = true;
 			}
 		} else {
-			// rollResult must be between minVal and maxVal
-			let insertIdx = 0;
-			while(vals[insertIdx] < rollResult) {
-				insertIdx++;
-			}
-			// vals[insertIdx-1] < rollResult && vals[insertIdx] > rollResult
-			const insertMin = bucketList.findIndex(e => e.value === vals[insertIdx-1]);
-			const insertMax = bucketList.findIndex(e => e.value === vals[insertIdx]);
-			// set buckets below insertMin to disabled
-			for(let i = 0; i < insertMin; i++) {
+			let leftIndex = bucketList.findIndex(e => e.value === leftMax);
+			let rightIndex = bucketList.findIndex(e => e.value === rightMin);
+			for(let i = 0; i < leftIndex; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = true;
 			}
-			// set buckets between insertMin and insertMax to active
-			for(let i = insertMin+1; i < insertMax; i++) {
+			for(let i = leftIndex; i < rightIndex; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = false;
 			}
-			// set buckets above insertMax to disabled
-			for(let i = insertMax+1; i < bucketList.length; i++) {
+			for(let i = rightIndex; i < bucketList.length; i++) {
 				if(!bucketList[i].value) bucketList[i].disabled = true;
 			}
 		}

@@ -4,6 +4,8 @@
 </script>
 
 <Modal
-	styleBg={{ backdropFilter: 'blur(5px)' }}>
+	styleBg={{ backdropFilter: 'blur(5px)', backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
+	styleContent={{ background: 'var(--appBGColorModal)', borderRadius: '20px'}}
+	styleWindow={{background: 'transparent'}}>
 	<slot />
 </Modal>

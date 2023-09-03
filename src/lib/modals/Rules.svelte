@@ -11,12 +11,20 @@
 	}
 </script>
 
-<div>
-	<h2>Rules</h2>
-	<ol>
-		<li>You must fill 20 buckets with numbers in ascending order</li>
-		<li>The numbers are given to you randomly from the range 0-999 (no repeats)</li>
-		<li>How many numbers can you place?</li>
-	</ol>
-	<button type="button" on:click={closeModal}>Dismiss</button>
+<div class="container">
+	<h2>How to Play</h2>
+	<button type="button" on:click={closeModal}>Close</button>
 </div>
+
+<style lang="scss">
+	.container {
+		color: var(--appLogoColor2);
+	}
+	h2 {
+		margin: 0;
+		text-align: center;
+	}
+	button {
+		margin: 0 auto;
+	}
+</style>

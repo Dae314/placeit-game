@@ -1,11 +1,7 @@
 <script>
-	import { getContext, onMount, tick } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { base } from '$app/paths';
-	import Rules from '$lib/modals/Rules.svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
-
-	const { open } = getContext('simple-modal');
 
 	const numBuckets = 20;
 	const deckMin = 0;
@@ -16,11 +12,6 @@
 	let rollResult;
 	let bucketList;
 	reset();
-
-	onMount(async () => {
-		await tick();
-		if($AppData.appSettings.showRules) open(Rules, {}, {closeButton: false, closeOnEsc: false, closeOnOuterClick: false});
-	});
 
 	function drawRandom() {
 		const min = 0;
@@ -105,7 +96,7 @@
 
 		if(state !== "continue") {
 			const score = bucketList.filter(e => e.value !== null).length;
-			
+
 			$AppData.playerStats.lastGameData.state = state;
 			$AppData.playerStats.lastGameData.score = score;
 

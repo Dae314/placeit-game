@@ -45,7 +45,7 @@ function buildAppData(data) {
 		{name: 'lastGameData', default: {}, reset: true},
 	];
 	const expectedAppSettingsProps = [
-		{name: 'showRules', default: false, reset: false},
+		
 	];
 
 	// set the top-level properties first

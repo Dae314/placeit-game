@@ -1,5 +1,13 @@
 <script>
+	import { getContext } from 'svelte';
 	import { base } from '$app/paths';
+	import Rules from '$lib/modals/Rules.svelte';
+
+	const { open } = getContext('simple-modal');
+
+	function openHowTo() {
+		open(Rules, {}, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true});
+	}
 </script>
 
 <div class="container">
@@ -7,6 +15,7 @@
 	<h2>A game about numbers and places</h2>
 
 	<a href="{base}/game">Play</a>
+	<button type="button" class="howToButton" on:click={openHowTo}>How to Play</button>
 </div>
 
 <style lang="scss">
@@ -47,6 +56,27 @@
 		font-size: 3.5rem;
 		font-weight: bold;
 		justify-content: center;
+		padding: 10px;
+		text-decoration: none;
+		user-select: none;
+		transition: all 0.2s;
+		&:hover {
+			background-color: rgba(94, 129, 172, 0.10);
+		}
+	}
+	button {
+		align-items: center;
+		background-color: transparent;
+		border: none;
+		border-radius: 10px;
+		color: var(--appLogoColor2);
+		cursor: pointer;
+		display: flex;
+		font-family: 'Courier New', Courier, monospace;
+		font-size: 2rem;
+		font-weight: bold;
+		justify-content: center;
+		outline: none;
 		padding: 10px;
 		text-decoration: none;
 		user-select: none;

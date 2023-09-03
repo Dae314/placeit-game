@@ -122,9 +122,10 @@
 					{#if bucket.value}
 						<span>{bucket.value}</span>
 					{:else}
-						<span>?</span>
+						<span class="unusedBucketText">{i+1}</span>
 					{/if}
 				</button>
+				<div class="underline" class:disabled={bucket.disabled}></div>
 			</div>
 		{/each}
 	</div>
@@ -135,29 +136,55 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 		justify-content: center;
 		width: 100%;
 	}
+	.rollArea {
+		margin-top: -80px;
+	}
 	.rollResult {
-		font-size: 5rem;
+		font-size: 10rem;
 		font-weight: bold;
 		text-align: center;
+		user-select: none;
 	}
 	.tableArea {
 		display: grid;
-		grid-template-rows: repeat(4, 40px);
-		grid-template-columns: repeat(5, 60px);
-		grid-gap: 5px;
+		grid-template-rows: repeat(4, 120px);
+		grid-template-columns: repeat(5, 120px);
+		grid-gap: 20px;
 		justify-content: center;
 		width: 100%;
 	}
 	.bucket {
-		border-bottom: 2px solid var(--appColorPrimary);
 		height: 100%;
 		width: 100%;
 	}
 	.bucketButton {
+		font-size: 3rem;
 		height: 100%;
 		width: 100%;
+		&:hover {
+			background: linear-gradient(0deg, rgba(163,190,140,0.10) 0%, rgba(163,190,140,0) 100%);
+		}
+		&:disabled {
+			cursor: default;
+			&:hover {
+				background: linear-gradient(0deg, rgba(191,97,106,0.10) 0%, rgba(191,97,106,0) 100%);
+			}
+		}
+	}
+	.unusedBucketText {
+		opacity: 0.05;
+	}
+	.underline {
+		background-color: var(--appAccentColor);
+		border-radius: 3px;
+		height: 5px;
+		width: 100%;
+		&.disabled {
+			background-color: var(--appLogoColor1);
+		}
 	}
 </style>

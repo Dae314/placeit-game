@@ -1,7 +1,8 @@
 <script>
 	import { getContext, onMount, tick } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import Rules from '$lib/modals/Rules.svelte';
-	import GameOver from '$lib/modals/GameOver.svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 
 	const { open } = getContext('simple-modal');
@@ -104,6 +105,9 @@
 
 		if(state !== "continue") {
 			const score = bucketList.filter(e => e.value !== null).length;
+			
+			$AppData.playerStats.lastGameData.state = state;
+			$AppData.playerStats.lastGameData.score = score;
 
 			$AppData.playerStats.scoreHistory = [...$AppData.playerStats.scoreHistory, score];
 			if($AppData.playerStats.scoreHistory.length >= maxHistory) {
@@ -111,7 +115,7 @@
 			}
 			saveAppData();
 
-			open(GameOver, { bucketList, state, score, resetCallback: reset }, {closeButton: false, closeOnEsc: false, closeOnOuterClick: false});
+			goto(`${base}/results`, { replaceState: false });
 		}
 	}
 </script>

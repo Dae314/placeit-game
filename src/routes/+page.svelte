@@ -15,7 +15,7 @@
 	<h2>A game about numbers and places</h2>
 
 	<a href="{base}/game">Play</a>
-	<button type="button" class="howToButton" on:click={openHowTo}>How to Play</button>
+	<button type="button" class="howToButton" on:click={openHowTo}>Rules</button>
 </div>
 
 <style lang="scss">
@@ -44,7 +44,8 @@
 		font-family: 'Courier New', Courier, monospace;
 		font-size: 1.5rem;
 		margin: 0;
-		margin-bottom: 20px;
+		margin-bottom: 25px;
+		user-select: none;
 	}
 	a {
 		align-items: center;
@@ -77,7 +78,7 @@
 		font-weight: bold;
 		justify-content: center;
 		outline: none;
-		padding: 10px;
+		padding: 5px;
 		text-decoration: none;
 		user-select: none;
 		transition: all 0.2s;

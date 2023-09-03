@@ -66,24 +66,7 @@
 		}
 	}
 	button {
-		align-items: center;
-		background-color: transparent;
-		border: none;
-		border-radius: 10px;
-		color: var(--appLogoColor2);
-		cursor: pointer;
-		display: flex;
-		font-family: 'Courier New', Courier, monospace;
 		font-size: 2rem;
-		font-weight: bold;
-		justify-content: center;
-		outline: none;
 		padding: 5px;
-		text-decoration: none;
-		user-select: none;
-		transition: all 0.2s;
-		&:hover {
-			background-color: rgba(94, 129, 172, 0.10);
-		}
 	}
 </style>

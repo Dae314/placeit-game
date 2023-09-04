@@ -42,7 +42,6 @@ function buildAppData(data) {
 	];
 	const expectedPlayerStatsProps = [
 		{name: 'scoreHistory', default: [], reset: false},
-		{name: 'lastGameData', default: {}, reset: true},
 	];
 	const expectedAppSettingsProps = [
 		

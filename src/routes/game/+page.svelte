@@ -1,12 +1,15 @@
 <script>
-	import { goto } from '$app/navigation';
-	import { base } from '$app/paths';
+	import { getContext } from 'svelte';
+	import GameOver from '$lib/modals/GameOver.svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
+
+	const { open } = getContext('simple-modal');
 
 	const numBuckets = 20;
 	const deckMin = 0;
 	const deckMax = 999;
 	const maxHistory = 20;
+	const gameOverDelay = 2000;
 
 	let deck;
 	let rollResult;
@@ -97,16 +100,13 @@
 		if(state !== "continue") {
 			const score = bucketList.filter(e => e.value !== null).length;
 
-			$AppData.playerStats.lastGameData.state = state;
-			$AppData.playerStats.lastGameData.score = score;
-
 			$AppData.playerStats.scoreHistory = [...$AppData.playerStats.scoreHistory, score];
 			if($AppData.playerStats.scoreHistory.length >= maxHistory) {
 				$AppData.playerStats.scoreHistory = $AppData.playerStats.scoreHistory.slice(1, $AppData.playerStats.scoreHistory.length);
 			}
 			saveAppData();
 
-			goto(`${base}/results`, { replaceState: false });
+			setTimeout(() => open(GameOver, { bucketList, score, state }, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true}), gameOverDelay);
 		}
 	}
 </script>

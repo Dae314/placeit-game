@@ -1,40 +1,23 @@
 <script>
-	import { AppData } from '$lib/stores/AppData.js';
-	import { base } from '$app/paths';
 
-	const average = $AppData.playerStats.scoreHistory.reduce((x,y) => x+y)/$AppData.playerStats.scoreHistory.length;
 </script>
 
+<!--
+	Number of games won
+	Number of games played
+	Most buckets filled
+	Highest number placed
+	Lowest number placed
+	Shortest game won
+	Longest game won
+	Largest number placed in the first bucket for a win
+	Smallest number placed in the last bucket for a win
+-->
+
 <div class="container">
-	{#if $AppData.playerStats.lastGameData.state === "win"}
-		<h1>You win!</h1>
-	{:else if $AppData.playerStats.lastGameData.state === "lose"}
-		<h1>You lose!</h1>
-	{:else}
-		<h1>You stink!</h1>
-	{/if}
-	<p>Score: {$AppData.playerStats.lastGameData.score}</p>
-	<p>Average Score: {average}</p>
-	<a href="{base}/game">Play Again</a>
+
 </div>
 
 <style lang="scss">
-	a {
-		align-items: center;
-		border-radius: 10px;
-		color: var(--appAccentColor);
-		cursor: pointer;
-		display: flex;
-		font-family: 'Courier New', Courier, monospace;
-		font-size: 3.5rem;
-		font-weight: bold;
-		justify-content: center;
-		padding: 10px;
-		text-decoration: none;
-		user-select: none;
-		transition: all 0.2s;
-		&:hover {
-			background-color: rgba(94, 129, 172, 0.10);
-		}
-	}
+
 </style>

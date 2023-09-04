@@ -11,6 +11,10 @@
 	let rollResult;
 	let bucketList;
 	let showGameOver = false;
+	let score = 0;
+	let startTime = new Date();
+	let stopTime;
+	let elapsedTime;
 	reset();
 
 	function drawRandom() {
@@ -81,6 +85,11 @@
 			deck.push(i);
 		}
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
+
+		showGameOver = false;
+		startTime = new Date();
+		stopTime = {};
+
 		drawRandom();
 	}
 
@@ -95,7 +104,10 @@
 		}
 
 		if(state !== "continue") {
-			const score = bucketList.filter(e => e.value !== null).length;
+			stopTime = new Date();
+			elapsedTime = formatElapsedTime(stopTime - startTime);
+
+			score = bucketList.filter(e => e.value !== null).length;
 
 			$AppData.playerStats.scoreHistory = [...$AppData.playerStats.scoreHistory, score];
 			if($AppData.playerStats.scoreHistory.length >= maxHistory) {
@@ -105,6 +117,12 @@
 
 			setTimeout(() => showGameOver = true, gameOverDelay);
 		}
+	}
+
+	function formatElapsedTime(timeInMS) {
+		let minutes = Math.floor(timeInMS / 60000);
+		let seconds = ((timeInMS % 60000) / 1000).toFixed(0);
+		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	}
 </script>
 
@@ -128,10 +146,18 @@
 	</div>
 </div>
 
-<div class="gameOverOverlay" class:visible={showGameOver}>
-	<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
-	<button type="button">Example</button>
-</div>
+{#if showGameOver}
+	<div class="gameOverOverlay" class:visible={showGameOver}>
+		<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
+		<div class="statsArea">
+			<p>You placed {score} out of {numBuckets} tiles in {elapsedTime}!</p>
+		</div>
+		<div class="buttonArea">
+			<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
+			<button class="shareButton" type="button">SHARE</button>
+		</div>
+	</div>
+{/if}
 
 <style lang="scss">
 	.container {
@@ -146,8 +172,8 @@
 		margin-top: -80px;
 	}
 	.rollResult {
+		font-family: "Arial Black";
 		font-size: 10rem;
-		font-weight: bold;
 		text-align: center;
 		user-select: none;
 	}
@@ -205,6 +231,7 @@
 		visibility: hidden;
 		width: 100%;
 		.gameOverText {
+			font-family: "Arial Black";
 			font-size: 6rem;
 			font-weight: bold;
 			position: relative;
@@ -219,5 +246,35 @@
 			opacity: 1;
 			visibility: visible;
 		}
+		.statsArea {
+			margin-bottom: 27px;
+			p {
+				font-size: 1.5rem;
+				margin: 0;
+				user-select: none;
+			}
+		}
+		.buttonArea {
+			display: flex;
+			button {
+				background-color: rgba(94, 129, 172, 0.50);
+				color: var(--appTextColor);
+				font-family: Verdana;
+				font-size: 1.2rem;
+				&:hover {
+					background-color: rgba(94, 129, 172, 0.75);
+				}
+				&:first-child {
+					margin-right: 20px;
+				}
+			}
+			.shareButton {
+				background-color: rgba(163, 190, 140, 0.5);
+				&:hover {
+					background-color: rgba(163, 190, 140, 0.75);
+				}
+			}
+		}
 	}
+	
 </style>

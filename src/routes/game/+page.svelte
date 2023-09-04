@@ -14,6 +14,7 @@
 	let deck;
 	let rollResult;
 	let bucketList;
+	let showGameOver = false;
 	reset();
 
 	function drawRandom() {
@@ -105,8 +106,12 @@
 				$AppData.playerStats.scoreHistory = $AppData.playerStats.scoreHistory.slice(1, $AppData.playerStats.scoreHistory.length);
 			}
 			saveAppData();
+			showGameOver = true;
 
-			setTimeout(() => open(GameOver, { bucketList, score, state }, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true}), gameOverDelay);
+			// setTimeout(() => {
+			// 	open(GameOver, { bucketList, score, state }, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true});
+			// 	showGameOver = false;
+			// }, gameOverDelay);
 		}
 	}
 </script>
@@ -129,6 +134,11 @@
 			</div>
 		{/each}
 	</div>
+</div>
+
+<div class="gameOverOverlay" class:visible={showGameOver}>
+	<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
+	<button type="button">Example</button>
 </div>
 
 <style lang="scss">
@@ -185,6 +195,37 @@
 		width: 100%;
 		&.disabled {
 			background-color: var(--appLogoColor1);
+		}
+	}
+	.gameOverOverlay {
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(5px);
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		transition: opacity 1s;
+		visibility: hidden;
+		width: 100%;
+		.gameOverText {
+			font-size: 6rem;
+			font-weight: bold;
+			position: relative;
+			top: -55%;
+			transition: top 1s;
+			user-select: none;
+			&.textVisible {
+				top: 0%;
+			}
+		}
+		&.visible {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 </style>

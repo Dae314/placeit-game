@@ -1,12 +1,21 @@
 <script>
+	import { getContext } from 'svelte';
 	import { AppData } from '$lib/stores/AppData.js';
 	import { base } from '$app/paths';
+
+	const { close } = getContext('simple-modal');
 
 	export let bucketList;
 	export let score;
 	export let state;
+	export let resetCallback;
 
 	const average = $AppData.playerStats.scoreHistory.reduce((x,y) => x+y)/$AppData.playerStats.scoreHistory.length;
+
+	function reset() {
+		resetCallback();
+		close();
+	}
 </script>
 
 <div class="container">
@@ -19,11 +28,11 @@
 	{/if}
 	<p>Score: {score}</p>
 	<p>Average Score: {average}</p>
-	<a href="{base}/game">Play Again</a>
+	<button type="button" on:click={reset}>Play Again</button>
 </div>
 
 <style lang="scss">
-	a {
+	button {
 		align-items: center;
 		border-radius: 10px;
 		color: var(--appAccentColor);

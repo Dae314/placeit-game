@@ -1,9 +1,5 @@
 <script>
-	import { getContext } from 'svelte';
-	import GameOver from '$lib/modals/GameOver.svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
-
-	const { open } = getContext('simple-modal');
 
 	const numBuckets = 20;
 	const deckMin = 0;
@@ -106,12 +102,8 @@
 				$AppData.playerStats.scoreHistory = $AppData.playerStats.scoreHistory.slice(1, $AppData.playerStats.scoreHistory.length);
 			}
 			saveAppData();
-			showGameOver = true;
 
-			// setTimeout(() => {
-			// 	open(GameOver, { bucketList, score, state }, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true});
-			// 	showGameOver = false;
-			// }, gameOverDelay);
+			setTimeout(() => showGameOver = true, gameOverDelay);
 		}
 	}
 </script>

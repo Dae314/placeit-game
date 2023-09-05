@@ -169,7 +169,7 @@
 		width: 100%;
 	}
 	.rollArea {
-		margin-top: -80px;
+		margin-top: -40px;
 	}
 	.rollResult {
 		font-family: "Arial Black";
@@ -179,10 +179,11 @@
 	}
 	.tableArea {
 		display: grid;
-		grid-template-rows: repeat(4, 120px);
-		grid-template-columns: repeat(5, 120px);
+		grid-auto-rows: 120px;
+		grid-template-columns: repeat(auto-fill, 120px);
 		grid-gap: 20px;
 		justify-content: center;
+		max-width: 700px;
 		width: 100%;
 	}
 	.bucket {
@@ -276,5 +277,19 @@
 			}
 		}
 	}
-	
+	@media (max-width: 680px) {
+		.rollArea {
+			margin-top: 50px;
+		}
+	}
+	@media (max-width: 540px) {
+		.rollArea {
+			margin-top: 275px;
+		}
+	}
+	@media (max-width: 400px) {
+		.rollArea {
+			margin-top: 695px;
+		}
+	}
 </style>

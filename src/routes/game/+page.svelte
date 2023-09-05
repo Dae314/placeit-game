@@ -1,5 +1,6 @@
 <script>
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
+	import { error } from '@sveltejs/kit';
 
 	const numBuckets = 20;
 	const deckMin = 0;
@@ -10,6 +11,7 @@
 	let rollResult;
 	let bucketList;
 	let showGameOver = false;
+	let showCopyConfirm = false;
 	let score = 0;
 	let startTime = new Date();
 	let stopTime;
@@ -134,6 +136,30 @@
 		let seconds = ((timeInMS % 60000) / 1000).toFixed(0);
 		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	}
+
+	function copyResultToClipboard() {
+		const flavorText = `I placed ${score} tiles in ${elapsedTime} on PlaceIt!`;
+		const boardState = convertBucketListToEmotes();
+		const promo = "Play at https://placitgame.net"
+		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
+		navigator.clipboard.writeText(result);
+		showCopyConfirm = true;
+		setTimeout(() => showCopyConfirm = false, 2000);
+	}
+
+	function convertBucketListToEmotes() {
+		const cols = 5;
+		let result = '';
+		for(const [i, bucket] of bucketList.entries()) {
+			if(bucket.value === null) {
+				result = result + '🟨';
+			} else {
+				result = result + '🟦';
+			}
+			if((i + 1) % cols === 0) result = result + '\n';
+		}
+		return result.trim();
+	}
 </script>
 
 <div class="container">
@@ -163,8 +189,12 @@
 	</div>
 	<div class="buttonArea">
 		<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
-		<button class="shareButton" type="button">SHARE</button>
+		<button class="shareButton" type="button" on:click={copyResultToClipboard}>SHARE</button>
 	</div>
+</div>
+
+<div class="copyConfirm" class:copyVisible={showCopyConfirm}>
+	<p>COPIED TO CLIPBOARD</p>
 </div>
 
 <style lang="scss">
@@ -283,6 +313,38 @@
 					background-color: rgba(163, 190, 140, 0.75);
 				}
 			}
+		}
+	}
+	.copyConfirm {
+		background-color: rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
+		position: absolute;
+		left: 50%;
+		opacity: 0;
+		padding: 10px;
+		text-align: center;
+		top: 30px;
+		transform: translate(-50%, 0);
+		visibility: hidden;
+		p {
+			font-weight: bold;
+			margin: 0;
+		}
+		&.copyVisible {
+			animation-name: copyConfirm;
+			animation-duration: 2s;
+			visibility: visible;
+		}
+	}
+	@keyframes copyConfirm {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
 		}
 	}
 	@media (max-width: 680px) {

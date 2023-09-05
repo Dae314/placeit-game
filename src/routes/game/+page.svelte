@@ -4,7 +4,6 @@
 	const numBuckets = 20;
 	const deckMin = 0;
 	const deckMax = 999;
-	const maxHistory = 20;
 	const gameOverDelay = 2000;
 
 	let deck;
@@ -106,15 +105,25 @@
 		if(state !== "continue") {
 			stopTime = new Date();
 			elapsedTime = formatElapsedTime(stopTime - startTime);
-
 			score = bucketList.filter(e => e.value !== null).length;
+			let maxBucket = bucketList.reduce((prev, cur) => cur.value > prev.value ? cur : prev);
+			let minBucket = bucketList.reduce((prev, cur) => cur.value < prev.value ? cur : prev);
 
-			$AppData.playerStats.scoreHistory = [...$AppData.playerStats.scoreHistory, score];
-			if($AppData.playerStats.scoreHistory.length >= maxHistory) {
-				$AppData.playerStats.scoreHistory = $AppData.playerStats.scoreHistory.slice(1, $AppData.playerStats.scoreHistory.length);
+			// update player statistics
+			$AppData.playerStats.totalGames++;
+			if(score > $AppData.playerStats.highestScore) $AppData.playerStats.highestScore = score;
+			if(maxBucket > $AppData.playerStats.highestPlaced) $AppData.playerStats.highestPlaced = maxBucket;
+			if(minBucket < $AppData.playerStats.lowestPlaced) $AppData.playerStats.lowestPlaced = minBucket;
+			if(state === 'win') {
+				$AppData.playerStats.wonGames++;
+				if($AppData.playerStats.fastestWin === null || stopTime - startTime < $AppData.playerStats.fastestWin) $AppData.playerStats.fastestWin = stopTime - startTime;
+				if($AppData.playerStats.slowestWin === null || stopTime - startTime > $AppData.playerStats.slowestWin) $AppData.playerStats.slowestWin = stopTime - startTime;
+				if(bucketList[0].value > $AppData.playerStats.highestFirstBucket) $AppData.playerStats.highestFirstBucket = bucketList[0].value;
+				if(bucketList[numBuckets-1] < $AppData.playerStats.lowestLastBucket) $AppData.playerStats.lowestLastBucket = bucketList[numBuckets-1].value;
 			}
 			saveAppData();
 
+			// show gameover screen
 			setTimeout(() => showGameOver = true, gameOverDelay);
 		}
 	}

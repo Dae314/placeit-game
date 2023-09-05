@@ -155,18 +155,16 @@
 	</div>
 </div>
 
-{#if showGameOver}
-	<div class="gameOverOverlay" class:visible={showGameOver}>
-		<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
-		<div class="statsArea">
-			<p>You placed {score} out of {numBuckets} tiles in {elapsedTime}!</p>
-		</div>
-		<div class="buttonArea">
-			<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
-			<button class="shareButton" type="button">SHARE</button>
-		</div>
+<div class="gameOverOverlay" class:visible={showGameOver}>
+	<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
+	<div class="statsArea">
+		<p>You placed {score} out of {numBuckets} tiles in {elapsedTime}!</p>
 	</div>
-{/if}
+	<div class="buttonArea">
+		<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
+		<button class="shareButton" type="button">SHARE</button>
+	</div>
+</div>
 
 <style lang="scss">
 	.container {

@@ -60,7 +60,7 @@
 		padding: 10px;
 		text-decoration: none;
 		user-select: none;
-		transition: all 0.2s;
+		transition: background-color 0.2s;
 		&:hover {
 			background-color: rgba(94, 129, 172, 0.10);
 		}

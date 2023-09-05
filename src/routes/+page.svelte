@@ -14,8 +14,9 @@
 	<h1><span class="logo1">Place</span><span class="logo2">It</span></h1>
 	<h2>A game about numbers and places</h2>
 
-	<a href="{base}/game">Play</a>
-	<button type="button" class="howToButton" on:click={openHowTo}>Rules</button>
+	<a class="playLink" href="{base}/game">PLAY</a>
+	<button type="button" class="howToButton" on:click={openHowTo}>RULES</button>
+	<a class="statsLink" href="{base}/stats">STATS</a>
 </div>
 
 <style lang="scss">
@@ -47,7 +48,7 @@
 		margin-bottom: 25px;
 		user-select: none;
 	}
-	a {
+	.playLink, .statsLink {
 		align-items: center;
 		border-radius: 10px;
 		color: var(--appAccentColor);
@@ -57,13 +58,18 @@
 		font-size: 3.5rem;
 		font-weight: bold;
 		justify-content: center;
-		padding: 10px;
+		padding: 5px;
 		text-decoration: none;
 		user-select: none;
 		transition: background-color 0.2s;
 		&:hover {
 			background-color: rgba(94, 129, 172, 0.10);
 		}
+	}
+	.statsLink {
+		color: var(--appLogoColor1);
+		font-size: 2rem;
+		padding: 5px;
 	}
 	button {
 		font-size: 2rem;

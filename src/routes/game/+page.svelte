@@ -14,7 +14,22 @@
 	let startTime = new Date();
 	let stopTime;
 	let elapsedTime;
+
 	reset();
+
+	function reset() {
+		deck = [];
+		for(let i = deckMin; i <= deckMax; i++) {
+			deck.push(i);
+		}
+		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
+
+		showGameOver = false;
+		startTime = new Date();
+		stopTime = {};
+
+		drawRandom();
+	}
 
 	function drawRandom() {
 		const min = 0;
@@ -76,20 +91,6 @@
 				if(!bucketList[i].value) bucketList[i].disabled = true;
 			}
 		}
-	}
-
-	function reset() {
-		deck = [];
-		for(let i = deckMin; i <= deckMax; i++) {
-			deck.push(i);
-		}
-		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
-
-		showGameOver = false;
-		startTime = new Date();
-		stopTime = {};
-
-		drawRandom();
 	}
 
 	function checkWinLoss() {

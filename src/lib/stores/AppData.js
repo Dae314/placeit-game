@@ -70,12 +70,16 @@ export async function saveAppData() {
 	window.localStorage.setItem('AppData', JSON.stringify(get(AppData)));
 }
 
+export function makeCleanAppData() {
+	return buildAppData({});
+}
+
 if(window.localStorage.getItem('appData') !== null) {
 	// Load AppData from localstorage if it exists
 	let appdata = JSON.parse(window.localStorage.getItem('AppData'));
 	appdata = buildAppData(appdata);
 } else {
-	appdata = buildAppData({});
+	appdata = makeCleanAppData();
 }
 
 export const AppData = writable(appdata);

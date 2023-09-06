@@ -2,11 +2,17 @@
 	import { getContext } from 'svelte';
 	import { base } from '$app/paths';
 	import Rules from '$lib/modals/Rules.svelte';
+	import { AppData, makeCleanAppData, saveAppData } from '$lib/stores/AppData.js';
 
 	const { open } = getContext('simple-modal');
 
 	function openHowTo() {
 		open(Rules, {}, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true});
+	}
+
+	function clearData() {
+		$AppData = makeCleanAppData();
+		saveAppData();
 	}
 </script>
 
@@ -17,6 +23,7 @@
 	<a class="playLink" href="{base}/game">PLAY</a>
 	<button type="button" class="howToButton" on:click={openHowTo}>RULES</button>
 	<a class="statsLink" href="{base}/stats">STATS</a>
+	<button type="button" class="clearStatsButton" on:click={clearData}>CLEAR DATA</button>
 </div>
 
 <style lang="scss">

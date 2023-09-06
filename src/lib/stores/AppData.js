@@ -74,9 +74,9 @@ export function makeCleanAppData() {
 	return buildAppData({});
 }
 
-if(window.localStorage.getItem('appData') !== null) {
+if(window.localStorage.getItem('AppData') !== null) {
 	// Load AppData from localstorage if it exists
-	let appdata = JSON.parse(window.localStorage.getItem('AppData'));
+	appdata = JSON.parse(window.localStorage.getItem('AppData'));
 	appdata = buildAppData(appdata);
 } else {
 	appdata = makeCleanAppData();

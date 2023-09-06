@@ -7,6 +7,7 @@
 	const deckMin = 1;
 	const deckMax = 999;
 	const gameOverDelay = 2000;
+	const copyConfirmDelay = 1000;
 
 	let deck;
 	let rollResult;
@@ -148,7 +149,7 @@
 		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
 		navigator.clipboard.writeText(result);
 		showCopyConfirm = true;
-		setTimeout(() => showCopyConfirm = false, 2000);
+		setTimeout(() => showCopyConfirm = false, copyConfirmDelay);
 	}
 
 	function convertBucketListToEmotes() {
@@ -197,8 +198,8 @@
 	</div>
 </div>
 
-<div class="copyConfirm" class:copyVisible={showCopyConfirm}>
-	<p>COPIED TO CLIPBOARD</p>
+<div class="copyConfirm" class:copyVisible={showCopyConfirm} style="--copyConfirmDelay: {copyConfirmDelay}ms">
+	<p>COPIED TO CLIPBOARD!</p>
 </div>
 
 <style lang="scss">
@@ -330,7 +331,7 @@
 		}
 		&.copyVisible {
 			animation-name: copyConfirm;
-			animation-duration: 2s;
+			animation-duration: var(--copyConfirmDelay);
 			visibility: visible;
 		}
 	}

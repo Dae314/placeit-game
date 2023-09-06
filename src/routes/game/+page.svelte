@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 
@@ -17,14 +17,27 @@
 	let dismissGameOver = false;
 	let showCopyConfirm = false;
 	let score = 0;
-	let startTime = new Date();
+	let startTime = window.performance.now();
 	let stopTime;
+	let finalTime;
+	let frame;
 	let elapsedTime;
 
 	onMount(() => {
 		rollResult = deckMax;
 		setTimeout(() => reset(), 100);
 	});
+
+	onDestroy(() => {
+		window.cancelAnimationFrame(frame);
+	});
+
+	function updateElapsedTime() {
+		frame = window.requestAnimationFrame(updateElapsedTime);
+
+		const time = window.performance.now();
+		elapsedTime = time - startTime;
+	}
 
 	function reset() {
 		deck = [];
@@ -34,7 +47,7 @@
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 
 		dismissGameOver = true;
-		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = new Date(); }, gameOverAnimationTime);
+		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = window.performance.now(); updateElapsedTime(); }, gameOverAnimationTime);
 		stopTime = {};
 
 		drawRandom();
@@ -113,8 +126,9 @@
 		}
 
 		if(state !== "continue") {
-			stopTime = new Date();
-			elapsedTime = formatElapsedTime(stopTime - startTime);
+			stopTime = window.performance.now();
+			cancelAnimationFrame(frame);
+			finalTime = formatTime(stopTime - startTime);
 			score = bucketList.filter(e => e.value !== null).length;
 			let maxBucket = bucketList.reduce((prev, cur) => cur.value > prev.value ? cur : prev);
 			let minBucket = bucketList.reduce((prev, cur) => cur.value < prev.value ? cur : prev);
@@ -138,14 +152,14 @@
 		}
 	}
 
-	function formatElapsedTime(timeInMS) {
+	function formatTime(timeInMS) {
 		let minutes = Math.floor(timeInMS / 60000);
 		let seconds = ((timeInMS % 60000) / 1000).toFixed(0);
 		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 	}
 
 	function copyResultToClipboard() {
-		const flavorText = `I placed ${score} tiles in ${elapsedTime} on PlaceIt!`;
+		const flavorText = `I placed ${score} tiles in ${finalTime} on PlaceIt!`;
 		const boardState = convertBucketListToEmotes();
 		const promo = "Play at https://placitgame.net"
 		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
@@ -173,6 +187,9 @@
 	<div class="rollArea">
 		<RollerDisplay value={rollResult} />
 	</div>
+	<div class="timeArea">
+		{formatTime(elapsedTime)}
+	</div>
 	<div class="tableArea">
 		{#each bucketList as bucket, i}
 			<div class="bucket">
@@ -192,7 +209,7 @@
 <div class="gameOverOverlay" class:visible={showGameOver} class:dismissAnimation={dismissGameOver} style="--gameOverAnimationTime: {gameOverAnimationTime}ms">
 	<span class="gameOverText" class:textVisible={showGameOver} class:dismissTextAnimation={dismissGameOver}>GAME OVER</span>
 	<div class="statsArea">
-		<p>You placed {score} out of {numBuckets} tiles in {elapsedTime}!</p>
+		<p>You placed {score} out of {numBuckets} tiles in {finalTime}!</p>
 	</div>
 	<div class="buttonArea">
 		<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>

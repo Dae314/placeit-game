@@ -4,7 +4,7 @@
 	
 	export let value = 0;
 	
-	$: digits = value.toString().padStart(3, '0').split('').map(Number);
+	$: digits = value.toString().padStart(3, 'x').split('').map(e => e === 'x' ? e : Number(e));
 </script>
 
 <div class="container">

@@ -1,15 +1,16 @@
 <script>
+	import { onMount } from 'svelte';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 
 	const numBuckets = 20;
-	const deckMin = 0;
+	const deckMin = 1;
 	const deckMax = 999;
 	const gameOverDelay = 2000;
 
 	let deck;
 	let rollResult;
-	let bucketList;
+	let bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 	let showGameOver = false;
 	let showCopyConfirm = false;
 	let score = 0;
@@ -17,7 +18,10 @@
 	let stopTime;
 	let elapsedTime;
 
-	reset();
+	onMount(() => {
+		rollResult = deckMax;
+		setTimeout(() => reset(), 10);
+	});
 
 	function reset() {
 		deck = [];

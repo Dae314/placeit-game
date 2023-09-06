@@ -20,7 +20,7 @@
 
 	onMount(() => {
 		rollResult = deckMax;
-		setTimeout(() => reset(), 10);
+		setTimeout(() => reset(), 100);
 	});
 
 	function reset() {

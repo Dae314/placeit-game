@@ -34,6 +34,7 @@
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 	}
 	.header {
 		align-items: center;
@@ -97,10 +98,9 @@
 			}
 			.statValue {
 				color: var(--appLogoColor2);
+				float: right;
 				font-weight: bold;
 				padding-right: 10px;
-				position: absolute;
-				right: 0;
 			}
 		}
 	}

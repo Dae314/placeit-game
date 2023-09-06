@@ -1,6 +1,6 @@
 <script>
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
-	import { error } from '@sveltejs/kit';
+	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 
 	const numBuckets = 20;
 	const deckMin = 0;
@@ -164,7 +164,7 @@
 
 <div class="container">
 	<div class="rollArea">
-		<span class="rollResult">{rollResult}</span>
+		<RollerDisplay value={rollResult} />
 	</div>
 	<div class="tableArea">
 		{#each bucketList as bucket, i}
@@ -208,12 +208,6 @@
 	}
 	.rollArea {
 		margin-top: -40px;
-	}
-	.rollResult {
-		font-family: "Arial Black";
-		font-size: 10rem;
-		text-align: center;
-		user-select: none;
 	}
 	.tableArea {
 		display: grid;

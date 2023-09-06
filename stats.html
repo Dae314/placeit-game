@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link rel="modulepreload" href="./_app/immutable/entry/start.06e350fb.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.2a48a4a4.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.28ac1452.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.a2ffb617.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/paths.e65e55d4.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/control.f5b05b5f.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.bc29371a.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.c5a2a3c6.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_kfngd0 = {
+						assets: "/placeit-game",
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.06e350fb.js"),
+						import("./_app/immutable/entry/app.bc29371a.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

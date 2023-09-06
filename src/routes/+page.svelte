@@ -82,4 +82,19 @@
 		font-size: 2rem;
 		padding: 5px;
 	}
+	@media (max-width: 680px) {
+		h1 {
+			font-size: 5rem;
+			margin-bottom: -20px;
+		}
+		h2 {
+			font-size: 1.1rem;
+		}
+		.playLink {
+			font-size: 3rem;
+		}
+		.statsLink, button {
+			font-size: 1.5rem;
+		}
+	}
 </style>

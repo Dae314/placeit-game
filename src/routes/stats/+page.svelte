@@ -114,4 +114,20 @@
 			width: 95%;
 		}
 	}
+	@media (max-width: 310px) {
+		.header {
+			h1 {
+				font-size: 2.5rem;
+			}
+			.backButton {
+				font-size: 1rem;
+			}
+		}
+		.statsArea {
+			.statCard {
+				font-size: 1rem;
+				margin-bottom: 32px;
+			}
+		}
+	}
 </style>

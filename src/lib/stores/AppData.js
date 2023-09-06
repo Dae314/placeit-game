@@ -78,4 +78,4 @@ if(window.localStorage.getItem('appData') !== null) {
 	appdata = buildAppData({});
 }
 
-export const AppData= writable(appdata);
+export const AppData = writable(appdata);

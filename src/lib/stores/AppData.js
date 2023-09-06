@@ -44,12 +44,12 @@ function buildAppData(data) {
 		{name: 'totalGames', default: 0, reset: false},
 		{name: 'wonGames', default: 0, reset: false},
 		{name: 'highestScore', default: 0, reset: false},
-		{name: 'highestPlaced', default: 0, reset: false},
-		{name: 'lowestPlaced', default: 999, reset: false},
+		{name: 'highestPlaced', default: -1, reset: false},
+		{name: 'lowestPlaced', default: 1000, reset: false},
 		{name: 'fastestWin', default: null, reset: false},
 		{name: 'slowestWin', default: null, reset: false},
-		{name: 'highestFirstBucket', default: 999, reset: false},
-		{name: 'lowestLastBucket', default: 0, reset: false},
+		{name: 'highestFirstBucket', default: -1, reset: false},
+		{name: 'lowestLastBucket', default: 1000, reset: false},
 	];
 	const expectedAppSettingsProps = [
 		

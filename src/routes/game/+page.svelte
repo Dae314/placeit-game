@@ -6,13 +6,15 @@
 	const numBuckets = 20;
 	const deckMin = 1;
 	const deckMax = 999;
-	const gameOverDelay = 2000;
+	const gameOverDelay = 1000;
+	const gameOverAnimationTime = 750;
 	const copyConfirmDelay = 1000;
 
 	let deck;
 	let rollResult;
 	let bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 	let showGameOver = false;
+	let dismissGameOver = false;
 	let showCopyConfirm = false;
 	let score = 0;
 	let startTime = new Date();
@@ -31,8 +33,8 @@
 		}
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 
-		showGameOver = false;
-		startTime = new Date();
+		dismissGameOver = true;
+		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = new Date(); }, gameOverAnimationTime);
 		stopTime = {};
 
 		drawRandom();
@@ -187,8 +189,8 @@
 	</div>
 </div>
 
-<div class="gameOverOverlay" class:visible={showGameOver}>
-	<span class="gameOverText" class:textVisible={showGameOver}>GAME OVER</span>
+<div class="gameOverOverlay" class:visible={showGameOver} class:dismissAnimation={dismissGameOver} style="--gameOverAnimationTime: {gameOverAnimationTime}ms">
+	<span class="gameOverText" class:textVisible={showGameOver} class:dismissTextAnimation={dismissGameOver}>GAME OVER</span>
 	<div class="statsArea">
 		<p>You placed {score} out of {numBuckets} tiles in {elapsedTime}!</p>
 	</div>
@@ -265,7 +267,7 @@
 		opacity: 0;
 		position: absolute;
 		top: 0;
-		transition: opacity 1s;
+		transition: opacity var(--gameOverAnimationTime);
 		visibility: hidden;
 		width: 100%;
 		.gameOverText {
@@ -274,15 +276,21 @@
 			font-weight: bold;
 			position: relative;
 			top: -55%;
-			transition: top 1s;
+			transition: top var(--gameOverAnimationTime);
 			user-select: none;
 			&.textVisible {
 				top: 0%;
+			}
+			&.dismissTextAnimation {
+				top: -55%;
 			}
 		}
 		&.visible {
 			opacity: 1;
 			visibility: visible;
+		}
+		&.dismissAnimation {
+			opacity: 0;
 		}
 		.statsArea {
 			margin-bottom: 27px;

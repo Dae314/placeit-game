@@ -354,19 +354,56 @@
 			opacity: 0;
 		}
 	}
-	@media (max-width: 680px) {
-		.rollArea {
-			margin-top: 50px;
+	@media (max-width: 740px) {
+		.tableArea {
+			grid-auto-rows: 100px;
+			grid-template-columns: repeat(auto-fill, 100px);
+			grid-gap: 15px;
+			max-width: 560px;
+		}
+		.bucketButton {
+			font-size: 2.8rem;
 		}
 	}
-	@media (max-width: 540px) {
-		.rollArea {
-			margin-top: 275px;
+	@media (max-width: 650px) {
+		.tableArea {
+			grid-auto-rows: 90px;
+			grid-template-columns: repeat(auto-fill, 90px);
+			grid-gap: 12px;
+			max-width: 498px;
+		}
+		.bucketButton {
+			font-size: 2.5rem;
 		}
 	}
-	@media (max-width: 400px) {
-		.rollArea {
-			margin-top: 695px;
+	@media (max-width: 550px) {
+		.tableArea {
+			grid-auto-rows: 80px;
+			grid-template-columns: repeat(auto-fill, 80px);
+			grid-gap: 10px;
+			max-width: 440px;
+		}
+		.bucketButton {
+			font-size: 2.2rem;
+		}
+	}
+	@media (max-width: 480px) {
+		.tableArea {
+			grid-auto-rows: 80px;
+			grid-template-columns: repeat(auto-fill, 80px);
+			grid-gap: 10px;
+			max-width: 350px;
+		}
+	}
+	@media (max-width: 390px) {
+		.tableArea {
+			grid-auto-rows: 70px;
+			grid-template-columns: repeat(auto-fill, 70px);
+			grid-gap: 8px;
+			max-width: 304px;
+		}
+		.bucketButton {
+			font-size: 2rem;
 		}
 	}
 </style>

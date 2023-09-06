@@ -1,20 +1,32 @@
 <script>
 	// Originally from: https://svelte.dev/repl/1ed2971a5b594fde94a31bfdd11cfc18?version=3.42.6
 	export let number;
-	export let lineHeight = 120;
+	let lineHeight = 120;
 	const digits = ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 	function calculateOffset(n) {
 		if(n === 'x') return 0;
 		return -(n + 1) * lineHeight;
 	}
+
+	const mediaListener = window.matchMedia("(max-width: 740px)");
+	mediaListener.addEventListener('change', mediaQueryHandler);
+
+	function mediaQueryHandler(e) {
+		// set lineHeight for mobile
+		if(e.matches) {
+			lineHeight = 100;
+		}
+	}
 </script>
 
-<div class="container" style="--line-height: {lineHeight}px; --offset: {calculateOffset(number)}px">
-	{#each digits as i}
-		<div class="digit" class:active={number === 'x' || i === number}>{i}</div>
-	{/each}
-</div>
+{#key lineHeight}
+	<div class="container" style="--line-height: {lineHeight}px; --offset: {calculateOffset(number)}px">
+		{#each digits as i}
+			<div class="digit" class:active={number === 'x' || i === number}>{i}</div>
+		{/each}
+	</div>
+{/key}
 
 <style>
 	.digit {

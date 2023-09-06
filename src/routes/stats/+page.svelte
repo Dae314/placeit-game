@@ -17,15 +17,15 @@
 		<h1>STATS</h1>
 	</div>
 	<div class="statsArea">
-		<div class="statCard">TOTAL GAMES PLAYED<span class="statValue">{$AppData.playerStats.totalGames}</span></div>
-				<div class="statCard">TOTAL GAMES WON<span class="statValue">{$AppData.playerStats.wonGames}</span></div>
-				<div class="statCard">MOST TILES PLACED<span class="statValue">{$AppData.playerStats.highestScore}</span></div>
-				<div class="statCard">LARGEST NUMBER PLACED<span class="statValue">{$AppData.playerStats.highestPlaced === -1 ? defaultString : $AppData.playerStats.highestPlaced}</span></div>
-				<div class="statCard">SMALLEST NUMBER PLACED<span class="statValue">{$AppData.playerStats.lowestPlaced === 1000 ? defaultString : $AppData.playerStats.lowestPlaced}</span></div>
-				<div class="statCard">SHORTEST WIN<span class="statValue">{formatElapsedTime($AppData.playerStats.fastestWin)}</span></div>
-				<div class="statCard">LONGEST WIN<span class="statValue">{formatElapsedTime($AppData.playerStats.slowestWin)}</span></div>
-				<div class="statCard">LARGEST NUMBER ON FIRST TILE (WIN)<span class="statValue">{$AppData.playerStats.highestFirstBucket === -1 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
-				<div class="statCard">SMALLEST NUMBER ON LAST TILE (WIN)<span class="statValue">{$AppData.playerStats.lowestLastBucket === 1000 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
+		<div class="statCard"><span class="statDesc">TOTAL GAMES PLAYED</span><span class="statValue">{$AppData.playerStats.totalGames}</span></div>
+		<div class="statCard"><span class="statDesc">TOTAL GAMES WON</span><span class="statValue">{$AppData.playerStats.wonGames}</span></div>
+		<div class="statCard"><span class="statDesc">MOST TILES PLACED</span><span class="statValue">{$AppData.playerStats.highestScore}</span></div>
+		<div class="statCard"><span class="statDesc">LARGEST NUMBER PLACED</span><span class="statValue">{$AppData.playerStats.highestPlaced === -1 ? defaultString : $AppData.playerStats.highestPlaced}</span></div>
+		<div class="statCard"><span class="statDesc">SMALLEST NUMBER PLACED</span><span class="statValue">{$AppData.playerStats.lowestPlaced === 1000 ? defaultString : $AppData.playerStats.lowestPlaced}</span></div>
+		<div class="statCard"><span class="statDesc">SHORTEST WIN</span><span class="statValue">{formatElapsedTime($AppData.playerStats.fastestWin)}</span></div>
+		<div class="statCard"><span class="statDesc">LONGEST WIN</span><span class="statValue">{formatElapsedTime($AppData.playerStats.slowestWin)}</span></div>
+		<div class="statCard"><span class="statDesc">LARGEST NUMBER ON FIRST TILE (WIN)</span><span class="statValue">{$AppData.playerStats.highestFirstBucket === -1 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
+		<div class="statCard"><span class="statDesc">SMALLEST NUMBER ON LAST TILE (WIN)</span><span class="statValue">{$AppData.playerStats.lowestLastBucket === 1000 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
 	</div>
 </div>
 

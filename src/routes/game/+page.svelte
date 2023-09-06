@@ -364,6 +364,11 @@
 		.bucketButton {
 			font-size: 2.8rem;
 		}
+		.gameOverOverlay {
+			.gameOverText {
+				font-size: 5rem;
+			}
+		}
 	}
 	@media (max-width: 650px) {
 		.tableArea {
@@ -386,6 +391,16 @@
 		.bucketButton {
 			font-size: 2.2rem;
 		}
+		.gameOverOverlay {
+			.gameOverText {
+				font-size: 4rem;
+			}
+			.statsArea {
+				p {
+					font-size: 1.2rem;
+				}
+			}
+		}
 	}
 	@media (max-width: 480px) {
 		.tableArea {
@@ -393,6 +408,22 @@
 			grid-template-columns: repeat(auto-fill, 80px);
 			grid-gap: 10px;
 			max-width: 350px;
+		}
+		.gameOverOverlay {
+			.gameOverText {
+				font-size: 3rem;
+			}
+			.statsArea {
+				p {
+					font-size: 1rem;
+				}
+			}
+			.buttonArea {
+				button {
+					font-size: 1rem;
+					padding: 8px;
+				}
+			}
 		}
 	}
 	@media (max-width: 390px) {
@@ -404,6 +435,42 @@
 		}
 		.bucketButton {
 			font-size: 2rem;
+		}
+	}
+	@media (max-width: 330px) {
+		.tableArea {
+			grid-auto-rows: 60px;
+			grid-template-columns: repeat(auto-fill, 60px);
+			grid-gap: 8px;
+			max-width: 264px;
+		}
+		.bucketButton {
+			font-size: 1.5rem;
+		}
+		.gameOverOverlay {
+			.gameOverText {
+				font-size: 2rem;
+			}
+			.statsArea {
+				p {
+					font-size: 0.8rem;
+				}
+			}
+			.buttonArea {
+				button {
+					border-radius: 5px;
+					font-size: 0.8rem;
+					padding: 6px;
+				}
+			}
+		}
+	}
+	@media (max-width: 290px) {
+		.tableArea {
+			grid-auto-rows: 50px;
+			grid-template-columns: repeat(auto-fill, 50px);
+			grid-gap: 5px;
+			max-width: 215px;
 		}
 	}
 </style>

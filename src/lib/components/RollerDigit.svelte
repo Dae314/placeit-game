@@ -9,13 +9,26 @@
 		return -(n + 1) * lineHeight;
 	}
 
-	const mediaListener = window.matchMedia("(max-width: 740px)");
-	mediaListener.addEventListener('change', mediaQueryHandler);
+	const widthDesktopListener = window.matchMedia("(min-width: 740px)");
+	const width740Listener = window.matchMedia("(max-width: 740px)");
+	const width330Listener = window.matchMedia("(max-width: 330px)");
+	widthDesktopListener.addEventListener('change', widthDesktopHandler);
+	width740Listener.addEventListener('change', width740Handler);
+	width330Listener.addEventListener('change', width330Handler);
 
-	function mediaQueryHandler(e) {
-		// set lineHeight for mobile
+	function widthDesktopHandler(e) {
+		if(e.matches) {
+			lineHeight = 120;
+		}
+	}
+	function width740Handler(e) {
 		if(e.matches) {
 			lineHeight = 100;
+		}
+	}
+	function width330Handler(e) {
+		if(e.matches) {
+			lineHeight = 75;
 		}
 	}
 </script>

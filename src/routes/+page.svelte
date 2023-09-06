@@ -97,4 +97,33 @@
 			font-size: 1.5rem;
 		}
 	}
+	@media (max-width: 370px) {
+		h1 {
+			font-size: 4rem;
+			margin-bottom: -10px;
+		}
+		h2 {
+			font-size: 0.9rem;
+		}
+		.playLink {
+			font-size: 2.5rem;
+		}
+		.statsLink, button {
+			font-size: 1rem;
+		}
+	}
+	@media (max-width: 300px) {
+		h1 {
+			font-size: 3rem;
+		}
+		h2 {
+			font-size: 0.7rem;
+		}
+		.playLink {
+			font-size: 2rem;
+		}
+		.statsLink, button {
+			font-size: 0.7rem;
+		}
+	}
 </style>

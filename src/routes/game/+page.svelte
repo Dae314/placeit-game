@@ -131,8 +131,8 @@
 			cancelAnimationFrame(frame);
 			finalTime = formatTime(stopTime - startTime);
 			score = bucketList.filter(e => e.value !== null).length;
-			let maxBucket = bucketList.reduce((prev, cur) => cur.value > prev.value ? cur : prev);
-			let minBucket = bucketList.reduce((prev, cur) => cur.value < prev.value ? cur : prev);
+			const minBucket = bucketList.find(e => e.value);
+			const maxBucket = bucketList.toReversed().find(e => e.value);
 
 			// update player statistics
 			$AppData.playerStats.totalGames++;
@@ -142,8 +142,8 @@
 			} else if(score === $AppData.playerStats.highestScore) {
 				if(finalTime < $AppData.playerStats.highestScoreTime) $AppData.playerStats.highestScoreTime = finalTime;
 			}
-			if(maxBucket > $AppData.playerStats.highestPlaced) $AppData.playerStats.highestPlaced = maxBucket;
-			if(minBucket < $AppData.playerStats.lowestPlaced) $AppData.playerStats.lowestPlaced = minBucket;
+			if(maxBucket.value > $AppData.playerStats.highestPlaced) $AppData.playerStats.highestPlaced = maxBucket.value;
+			if(minBucket.value < $AppData.playerStats.lowestPlaced) $AppData.playerStats.lowestPlaced = minBucket.value;
 			if(state === 'win') {
 				$AppData.playerStats.wonGames++;
 				if($AppData.playerStats.fastestWin === null || stopTime - startTime < $AppData.playerStats.fastestWin) $AppData.playerStats.fastestWin = stopTime - startTime;

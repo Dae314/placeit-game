@@ -273,6 +273,7 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		font-family: Arial, Helvetica, sans-serif;
+		margin-bottom: 15px;
 		p {
 			margin: 0;
 			text-align: left;
@@ -298,16 +299,23 @@
 		width: 100%;
 	}
 	.bucketButton {
+		background-color: var(--appBGColorAccent1);
+		border-radius: 20px 20px 0px 0px;
 		font-size: 3rem;
 		height: 100%;
+		transition: all 0.2s;
 		width: 100%;
 		&:hover {
-			background: linear-gradient(0deg, rgba(163,190,140,0.10) 0%, rgba(163,190,140,0) 100%);
+			background-color: #3b4e52;
+			transform: scale(1.05);
+			&+.underline {
+				transform: scale(1.05);
+			}
 		}
 		&:disabled {
 			cursor: default;
 			&:hover {
-				background: linear-gradient(0deg, rgba(191,97,106,0.10) 0%, rgba(191,97,106,0) 100%);
+				background-color: #523b4e;
 			}
 		}
 	}
@@ -318,6 +326,7 @@
 		background-color: var(--appAccentColor);
 		border-radius: 3px;
 		height: 5px;
+		transition: all 0.2s;
 		width: 100%;
 		&.disabled {
 			background-color: var(--appLogoColor1);

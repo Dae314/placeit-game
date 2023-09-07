@@ -1,6 +1,7 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
 	import { base } from '$app/paths';
+	import { scale } from 'svelte/transition';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 
@@ -206,7 +207,7 @@
 			<div class="bucket">
 				<button class="bucketButton" type="button" on:click={() => selectBucket(i)} disabled={bucket.disabled}>
 					{#if bucket.value}
-						<span>{bucket.value}</span>
+						<span in:scale={{ duration: 100 }}>{bucket.value}</span>
 					{:else}
 						<span class="unusedBucketText">{i+1}</span>
 					{/if}

@@ -1,5 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
+	import { base } from '$app/paths';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 
@@ -189,6 +190,9 @@
 	}
 </script>
 
+<div class="navigation">
+	<a href="{base}/" class="backButton">BACK</a>
+</div>
 <div class="container">
 	<div class="rollArea">
 		<RollerDisplay value={rollResult} />
@@ -237,8 +241,33 @@
 		justify-content: center;
 		width: 100%;
 	}
-	.rollArea {
-		margin-top: -40px;
+	.navigation {
+		padding-left: 5px;
+		position: absolute;
+		width: 100%;
+		.backButton {
+			align-items: center;
+			background-color: transparent;
+			border: none;
+			border-radius: 10px;
+			color: var(--appLogoColor2);
+			cursor: pointer;
+			display: flex;
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 1.5rem;
+			font-weight: bold;
+			justify-content: center;
+			outline: none;
+			padding: 10px;
+			position: relative;
+			text-decoration: none;
+			user-select: none;
+			transition: background-color 0.2s;
+			width: fit-content;
+			&:hover {
+				background-color: rgba(94, 129, 172, 0.10);
+			}
+		}
 	}
 	.timeArea {
 		display: grid;
@@ -394,6 +423,9 @@
 		}
 	}
 	@media (max-width: 740px) {
+		.container {
+			justify-content: flex-start;
+		}
 		.tableArea {
 			grid-auto-rows: 100px;
 			grid-template-columns: repeat(auto-fill, 100px);
@@ -466,6 +498,11 @@
 		}
 	}
 	@media (max-width: 390px) {
+		.navigation {
+			.backButton {
+				font-size: 1rem;
+			}
+		}
 		.tableArea {
 			grid-auto-rows: 70px;
 			grid-template-columns: repeat(auto-fill, 70px);

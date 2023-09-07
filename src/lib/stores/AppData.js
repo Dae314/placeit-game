@@ -44,6 +44,7 @@ function buildAppData(data) {
 		{name: 'totalGames', default: 0, reset: false},
 		{name: 'wonGames', default: 0, reset: false},
 		{name: 'highestScore', default: 0, reset: false},
+		{name: 'highestScoreTime', default: null, reset: false},
 		{name: 'highestPlaced', default: -1, reset: false},
 		{name: 'lowestPlaced', default: 1000, reset: false},
 		{name: 'fastestWin', default: null, reset: false},

@@ -55,7 +55,7 @@
 
 	function drawRandom() {
 		const min = 0;
-		const max = deck.length;
+		const max = deck.length - 1;
 		const i = Math.floor(Math.random() * (max - min + 1)) + min;
 		const result = deck[i];
 		deck.splice(i, 1);
@@ -135,7 +135,12 @@
 
 			// update player statistics
 			$AppData.playerStats.totalGames++;
-			if(score > $AppData.playerStats.highestScore) $AppData.playerStats.highestScore = score;
+			if(score > $AppData.playerStats.highestScore) {
+				$AppData.playerStats.highestScore = score;
+				$AppData.playerStats.highestScoreTime = finalTime;
+			} else if(score === $AppData.playerStats.highestScore) {
+				if(finalTime < $AppData.playerStats.highestScoreTime) $AppData.playerStats.highestScoreTime = finalTime;
+			}
 			if(maxBucket > $AppData.playerStats.highestPlaced) $AppData.playerStats.highestPlaced = maxBucket;
 			if(minBucket < $AppData.playerStats.lowestPlaced) $AppData.playerStats.lowestPlaced = minBucket;
 			if(state === 'win') {
@@ -189,7 +194,8 @@
 		<RollerDisplay value={rollResult} />
 	</div>
 	<div class="timeArea">
-		{formatTime(elapsedTime)}
+		<p class="timeLabel">Time:</p><p>{formatTime(elapsedTime)}</p>
+		<p class="timeLabel">Previous Best:</p><p>{$AppData.playerStats.highestScore} out of {numBuckets} in {formatTime($AppData.playerStats.highestScoreTime)}</p>
 	</div>
 	<div class="tableArea">
 		{#each bucketList as bucket, i}
@@ -233,6 +239,21 @@
 	}
 	.rollArea {
 		margin-top: -40px;
+	}
+	.timeArea {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		font-family: Arial, Helvetica, sans-serif;
+		p {
+			margin: 0;
+			text-align: left;
+			user-select: none;
+			&.timeLabel {
+				text-align: right;
+				font-weight: bold;
+				margin-right: 5px;
+			}
+		}
 	}
 	.tableArea {
 		display: grid;

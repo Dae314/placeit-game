@@ -2,17 +2,11 @@
 	import { getContext } from 'svelte';
 	import { base } from '$app/paths';
 	import Rules from '$lib/modals/Rules.svelte';
-	import { AppData, makeCleanAppData, saveAppData } from '$lib/stores/AppData.js';
 
 	const { open } = getContext('simple-modal');
 
 	function openHowTo() {
 		open(Rules, {}, {closeButton: false, closeOnEsc: true, closeOnOuterClick: true});
-	}
-
-	function clearData() {
-		$AppData = makeCleanAppData();
-		saveAppData();
 	}
 </script>
 
@@ -23,7 +17,7 @@
 	<a class="playLink" href="{base}/game">PLAY</a>
 	<button type="button" class="howToButton" on:click={openHowTo}>RULES</button>
 	<a class="statsLink" href="{base}/stats">STATS</a>
-	<button type="button" class="clearStatsButton" on:click={clearData}>CLEAR DATA</button>
+	<a class="aboutLink" href="{base}/about">ABOUT</a>
 </div>
 
 <style lang="scss">
@@ -55,7 +49,7 @@
 		margin-bottom: 25px;
 		user-select: none;
 	}
-	.playLink, .statsLink {
+	.playLink, .statsLink, .aboutLink {
 		align-items: center;
 		border-radius: 10px;
 		color: var(--appAccentColor);
@@ -78,6 +72,10 @@
 		font-size: 2rem;
 		padding: 5px;
 	}
+	.aboutLink {
+		font-size: 2rem;
+		padding: 5px;
+	}
 	button {
 		font-size: 2rem;
 		padding: 5px;
@@ -93,7 +91,7 @@
 		.playLink {
 			font-size: 3rem;
 		}
-		.statsLink, button {
+		.statsLink, .aboutLink, button {
 			font-size: 1.5rem;
 		}
 	}
@@ -108,7 +106,7 @@
 		.playLink {
 			font-size: 2.5rem;
 		}
-		.statsLink, button {
+		.statsLink, .aboutLink, button {
 			font-size: 1rem;
 		}
 	}
@@ -122,7 +120,7 @@
 		.playLink {
 			font-size: 2rem;
 		}
-		.statsLink, button {
+		.statsLink, .aboutLink, button {
 			font-size: 0.7rem;
 		}
 	}

@@ -166,9 +166,9 @@
 	}
 
 	function copyResultToClipboard() {
-		const flavorText = `I placed ${score} tiles in ${finalTime} on PlaceIt!`;
+		const flavorText = `I placed ${score} out of ${numBuckets} tiles in ${finalTime} on PlaceIt!`;
 		const boardState = convertBucketListToEmotes();
-		const promo = "Play at https://placitgame.net"
+		const promo = "Can you place more? https://placeitgame.app"
 		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
 		navigator.clipboard.writeText(result);
 		showCopyConfirm = true;

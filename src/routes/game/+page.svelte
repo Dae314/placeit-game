@@ -3,6 +3,7 @@
 	import { base } from '$app/paths';
 	import { scale } from 'svelte/transition';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
+	import { Alert } from '$lib/stores/Alert.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
 	import formatTime from '$lib/formatTime.js';
 
@@ -11,7 +12,6 @@
 	const deckMax = 999;
 	const gameOverDelay = 1000;
 	const gameOverAnimationTime = 750;
-	const copyConfirmDelay = 1000;
 	const maxFPS = 10;
 
 	let deck;
@@ -19,7 +19,6 @@
 	let bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 	let showGameOver = false;
 	let dismissGameOver = false;
-	let showCopyConfirm = false;
 	let score = 0;
 	let startTime = window.performance.now();
 	let stopTime;
@@ -172,8 +171,7 @@
 		const promo = "Can you place more? https://placeitgame.app"
 		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
 		navigator.clipboard.writeText(result);
-		showCopyConfirm = true;
-		setTimeout(() => showCopyConfirm = false, copyConfirmDelay);
+		$Alert = { level: 'info', message: 'COPIED TO CLIPBOARD' };
 	}
 
 	function convertBucketListToEmotes() {
@@ -227,10 +225,6 @@
 		<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
 		<button class="shareButton" type="button" on:click={copyResultToClipboard}>SHARE</button>
 	</div>
-</div>
-
-<div class="copyConfirm" class:copyVisible={showCopyConfirm} style="--copyConfirmDelay: {copyConfirmDelay}ms">
-	<p>COPIED TO CLIPBOARD!</p>
 </div>
 
 <style lang="scss">
@@ -402,38 +396,6 @@
 					background-color: rgba(163, 190, 140, 0.75);
 				}
 			}
-		}
-	}
-	.copyConfirm {
-		background-color: rgba(0, 0, 0, 0.25);
-		border-radius: 10px;
-		position: absolute;
-		left: 50%;
-		opacity: 0;
-		padding: 10px;
-		text-align: center;
-		top: 30px;
-		transform: translate(-50%, 0);
-		visibility: hidden;
-		p {
-			font-weight: bold;
-			margin: 0;
-		}
-		&.copyVisible {
-			animation-name: copyConfirm;
-			animation-duration: var(--copyConfirmDelay);
-			visibility: visible;
-		}
-	}
-	@keyframes copyConfirm {
-		0% {
-			opacity: 0;
-		}
-		50% {
-			opacity: 1;
-		}
-		100% {
-			opacity: 0;
 		}
 	}
 	@media (max-width: 740px) {

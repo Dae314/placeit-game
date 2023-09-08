@@ -14,7 +14,7 @@ function isObject(data) {
 // [{name: 'propName', default: 'propDefaultVal', reset: false}, ...]
 function objTemplate(template, obj) {
 	// make sure that data is an object (and nothing else)
-	if(!isObject(obj)) throw error(500, 'Object must be a plain Javascript object.');
+	if(!isObject(obj)) throw error(400, 'Object must be a plain Javascript object.');
 
 	// make a copy of the object to start
 	const newObj = JSON.parse(JSON.stringify(obj))

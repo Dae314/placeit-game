@@ -26,7 +26,7 @@ function objTemplate(template, obj) {
 	}
 	// delete extra top-level props
 	for(let prop in newObj) {
-		if(!template.some(e => e.name === prop)) delete data[prop];
+		if(!template.some(e => e.name === prop)) delete newObj[prop];
 	}
 
 	// everything should be good now, return the clean object

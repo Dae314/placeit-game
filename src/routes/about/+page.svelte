@@ -2,10 +2,12 @@
 	import { version } from '$app/environment';
 	import { base } from '$app/paths';
 	import { AppData, makeCleanAppData, saveAppData } from '$lib/stores/AppData.js';
+	import { Alert } from '$lib/stores/Alert.js';
 
 	function clearData() {
 		$AppData = makeCleanAppData();
 		saveAppData();
+		$Alert = { level: 'info', message: 'SUCCESSFULLY CLEARED DATA' };
 	}
 </script>
 
@@ -18,8 +20,9 @@
 			<p class="version">Version: {version}</p>
 		</div>
 	</header>
-	<main class="container">
-		<p>Something about this app</p>
+	<main>
+		<h1><span class="logo1">Place</span><span class="logo2">It</span></h1>
+		<p>A game about numbers and places made by Wyatt Rice and Casey Chock using SvelteKit.</p>
 	</main>
 	<footer>
 		<button type="button" class="clearStatsButton" on:click={clearData}>CLEAR DATA</button>
@@ -32,8 +35,8 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		justify-content: center;
 		position: relative;
+		width: 100%;
 	}
 	header, footer, main {
 		width: 75%;
@@ -77,6 +80,24 @@
 			}
 		}
 		
+	}
+	main {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		h1 {
+			font-family: 'Courier New', Courier, monospace;
+			font-size: 3rem;
+			margin: 0;
+			margin-bottom: 10px;
+			.logo1 {
+				color: var(--appLogoColor1);
+			}
+			.logo2 {
+				color: var(--appLogoColor2);
+			}
+		}
 	}
 	footer {
 		bottom: 0;

@@ -135,7 +135,8 @@
 		if(state !== "continue") {
 			stopTime = window.performance.now();
 			cancelAnimationFrame(frame);
-			finalTime = formatTime(stopTime - startTime);
+			const finalTimeMs = stopTime - startTime;
+			finalTime = formatTime(finalTimeMs);
 			score = bucketList.filter(e => e.value !== null).length;
 			const minBucket = bucketList.find(e => e.value);
 			const maxBucket = bucketList.toReversed().find(e => e.value);
@@ -144,16 +145,16 @@
 			$AppData.playerStats.totalGames++;
 			if(score > $AppData.playerStats.highestScore) {
 				$AppData.playerStats.highestScore = score;
-				$AppData.playerStats.highestScoreTime = finalTime;
+				$AppData.playerStats.highestScoreTime = finalTimeMs;
 			} else if(score === $AppData.playerStats.highestScore) {
-				if(finalTime < $AppData.playerStats.highestScoreTime) $AppData.playerStats.highestScoreTime = finalTime;
+				if(finalTimeMs < $AppData.playerStats.highestScoreTime) $AppData.playerStats.highestScoreTime = finalTimeMs;
 			}
 			if(maxBucket.value > $AppData.playerStats.highestPlaced) $AppData.playerStats.highestPlaced = maxBucket.value;
 			if(minBucket.value < $AppData.playerStats.lowestPlaced) $AppData.playerStats.lowestPlaced = minBucket.value;
 			if(state === 'win') {
 				$AppData.playerStats.wonGames++;
-				if($AppData.playerStats.fastestWin === null || stopTime - startTime < $AppData.playerStats.fastestWin) $AppData.playerStats.fastestWin = stopTime - startTime;
-				if($AppData.playerStats.slowestWin === null || stopTime - startTime > $AppData.playerStats.slowestWin) $AppData.playerStats.slowestWin = stopTime - startTime;
+				if($AppData.playerStats.fastestWin === null || finalTimeMs < $AppData.playerStats.fastestWin) $AppData.playerStats.fastestWin = finalTimeMs;
+				if($AppData.playerStats.slowestWin === null || finalTimeMs > $AppData.playerStats.slowestWin) $AppData.playerStats.slowestWin = finalTimeMs;
 				if(bucketList[0].value > $AppData.playerStats.highestFirstBucket) $AppData.playerStats.highestFirstBucket = bucketList[0].value;
 				if(bucketList[numBuckets-1] < $AppData.playerStats.lowestLastBucket) $AppData.playerStats.lowestLastBucket = bucketList[numBuckets-1].value;
 			}

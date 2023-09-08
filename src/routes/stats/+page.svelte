@@ -1,14 +1,9 @@
 <script>
 	import { AppData } from '$lib/stores/AppData.js';
 	import { base } from '$app/paths';
+	import formatTime from '$lib/formatTime.js';
 
 	const defaultString = 'NONE';
-
-	function formatElapsedTime(timeInMS) {
-		let minutes = Math.floor(timeInMS / 60000);
-		let seconds = ((timeInMS % 60000) / 1000).toFixed(0);
-		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-	}
 </script>
 
 <div class="container">
@@ -22,8 +17,8 @@
 		<div class="statCard"><span class="statDesc">MOST TILES PLACED</span><span class="statValue">{$AppData.playerStats.highestScore}</span></div>
 		<div class="statCard"><span class="statDesc">LARGEST NUMBER PLACED</span><span class="statValue">{$AppData.playerStats.highestPlaced === -1 ? defaultString : $AppData.playerStats.highestPlaced}</span></div>
 		<div class="statCard"><span class="statDesc">SMALLEST NUMBER PLACED</span><span class="statValue">{$AppData.playerStats.lowestPlaced === 1000 ? defaultString : $AppData.playerStats.lowestPlaced}</span></div>
-		<div class="statCard"><span class="statDesc">SHORTEST WIN</span><span class="statValue">{formatElapsedTime($AppData.playerStats.fastestWin)}</span></div>
-		<div class="statCard"><span class="statDesc">LONGEST WIN</span><span class="statValue">{formatElapsedTime($AppData.playerStats.slowestWin)}</span></div>
+		<div class="statCard"><span class="statDesc">SHORTEST WIN</span><span class="statValue">{formatTime($AppData.playerStats.fastestWin)}</span></div>
+		<div class="statCard"><span class="statDesc">LONGEST WIN</span><span class="statValue">{formatTime($AppData.playerStats.slowestWin)}</span></div>
 		<div class="statCard"><span class="statDesc">LARGEST NUMBER ON FIRST TILE (WIN)</span><span class="statValue">{$AppData.playerStats.highestFirstBucket === -1 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
 		<div class="statCard"><span class="statDesc">SMALLEST NUMBER ON LAST TILE (WIN)</span><span class="statValue">{$AppData.playerStats.lowestLastBucket === 1000 ? defaultString : $AppData.playerStats.highestFirstBucket}</span></div>
 	</div>

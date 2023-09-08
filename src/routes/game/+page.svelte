@@ -317,6 +317,10 @@
 			cursor: default;
 			&:hover {
 				background-color: #523b4e;
+				transform: none;
+				&+.underline {
+					transform: none;
+				}
 			}
 		}
 	}

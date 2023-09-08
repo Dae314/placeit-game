@@ -11,6 +11,7 @@
 	const gameOverDelay = 1000;
 	const gameOverAnimationTime = 750;
 	const copyConfirmDelay = 1000;
+	const maxFPS = 10;
 
 	let deck;
 	let rollResult;
@@ -22,6 +23,7 @@
 	let startTime = window.performance.now();
 	let stopTime;
 	let finalTime;
+	let lastFrameTime;
 	let frame;
 	let elapsedTime;
 
@@ -34,11 +36,14 @@
 		window.cancelAnimationFrame(frame);
 	});
 
-	function updateElapsedTime() {
+	function updateElapsedTime(timestamp) {
+		if (timestamp < lastFrameTime + (1000 / maxFPS)) {
+			frame = requestAnimationFrame(updateElapsedTime);
+			return;
+		}
+		lastFrameTime = timestamp;
+		elapsedTime = timestamp - startTime;
 		frame = window.requestAnimationFrame(updateElapsedTime);
-
-		const time = window.performance.now();
-		elapsedTime = time - startTime;
 	}
 
 	function reset() {
@@ -49,7 +54,7 @@
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 
 		dismissGameOver = true;
-		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = window.performance.now(); updateElapsedTime(); }, gameOverAnimationTime);
+		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = window.performance.now(); lastFrameTime = startTime; frame = window.requestAnimationFrame(updateElapsedTime); }, gameOverAnimationTime);
 		stopTime = {};
 
 		drawRandom();
@@ -160,7 +165,7 @@
 	}
 
 	function formatTime(timeInMS) {
-		if(!Number.isInteger(timeInMS)) return '0:00';
+		if(!Number.isInteger(Math.floor(timeInMS))) return '0:00';
 		let minutes = Math.floor(timeInMS / 60000);
 		let seconds = ((timeInMS % 60000) / 1000).toFixed(0);
 		return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;

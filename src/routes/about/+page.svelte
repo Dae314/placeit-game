@@ -76,7 +76,6 @@
 				font-size: 1.5rem;
 				font-weight: bold;
 				justify-content: center;
-				outline: none;
 				padding: 10px;
 				position: relative;
 				text-decoration: none;

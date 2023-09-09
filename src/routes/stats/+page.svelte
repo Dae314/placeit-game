@@ -55,7 +55,6 @@
 			font-weight: bold;
 			justify-content: center;
 			left: 0;
-			outline: none;
 			padding: 10px;
 			position: absolute;
 			text-decoration: none;

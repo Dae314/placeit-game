@@ -55,4 +55,13 @@ button {
 	&:hover {
 		background-color: rgba(94, 129, 172, 0.10);
 	}
+	&:focus {
+		outline: 2px solid var(--appColorPrimary);
+	}
+}
+
+a {
+	&:focus {
+		outline: 2px solid var(--appColorPrimary);
+	}
 }

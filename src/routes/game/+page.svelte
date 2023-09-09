@@ -182,9 +182,9 @@
 		let result = '';
 		for(const [i, bucket] of bucketList.entries()) {
 			if(bucket.value === null) {
-				result = result + '🟨';
+				result = result + '⬛';
 			} else {
-				result = result + '🟦';
+				result = result + '🟩';
 			}
 			if((i + 1) % cols === 0) result = result + '\n';
 		}

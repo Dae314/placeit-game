@@ -15,7 +15,7 @@ const config = {
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		adapter: adapter(),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/placeit-game' : '',
+			base: process.env.NODE_ENV === 'production' ? '' : '',
 		},
 		version: {
 			name: pkg.version

@@ -35,7 +35,7 @@
 	<!-- Facebook Meta Tags -->
 	<meta property="og:title" content="PlaceIt" />
 	<meta property="og:type" content="website">
-	<meta property="og:description" content="Play PlaceIt" />
+	<meta property="og:description" content="A game about numbers and places" />
 	<meta property="og:image" content="{PUBLIC_PROD_URI}/og_resources/banner.jpg" />
 	<meta property="og:url" content="{PUBLIC_PROD_URI}" />
 
@@ -44,7 +44,7 @@
 	<meta property="twitter:domain" content="{PUBLIC_PROD_DOMAIN}">
 	<meta property="twitter:url" content="{PUBLIC_PROD_URI}">
 	<meta name="twitter:title" content="PlaceIt">
-	<meta name="twitter:description" content="Play PlaceIt">
+	<meta name="twitter:description" content="A game about numbers and places">
 	<meta name="twitter:image" content="{PUBLIC_PROD_URI}/og_resources/banner.jpg">
 </svelte:head>
 

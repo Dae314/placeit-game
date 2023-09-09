@@ -12,7 +12,7 @@
 
 <svelte:head>
 	<title>PlaceIt | A game about numbers and places</title>
-	<meta name="description" content="Play PlaceIt">
+	<meta name="description" content="Play PlaceIt a game about numbers and places.">
 </svelte:head>
 
 <div class="container">

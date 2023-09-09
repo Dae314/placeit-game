@@ -8,7 +8,7 @@
 
 <svelte:head>
 	<title>PlaceIt | Stats</title>
-	<meta name="description" content="PlaceIt Player Stats">
+	<meta name="description" content="PlaceIt Player Stats. Play the game and see your stats here. All data stored locally.">
 </svelte:head>
 
 <div class="container">

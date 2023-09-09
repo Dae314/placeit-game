@@ -365,7 +365,8 @@
 		top: 0;
 		width: 100%;
 		.gameOverText {
-			font-family: "Arial Black";
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
 			font-size: 6rem;
 			font-weight: bold;
 			position: relative;

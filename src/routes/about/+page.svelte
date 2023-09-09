@@ -37,8 +37,8 @@
 					<p>Casey Chock</p>
 				</div>
 			</div>
-			<p>Technology used: <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer noopener">SvelteKit</a></p>
-			<p><a href="https://github.com/Dae314/placeit-game" target="_blank" rel="noreferrer noopener">https://github.com/Dae314/placeit-game</a></p>
+			<p>Technology used: <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer noopener nofollow">SvelteKit</a></p>
+			<p><a href="https://github.com/Dae314/placeit-game" target="_blank" rel="noreferrer noopener nofollow">https://github.com/Dae314/placeit-game</a></p>
 			<p>This project is open source and licensed under the MIT License.</p>
 			<p>This app runs entirely in your browser and does not rely on any analytics. All data is stored locally on your device!</p>
 		</div>

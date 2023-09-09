@@ -10,8 +10,8 @@ html, body {
 html {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	--appColorPrimary: #5e81ac;
-	--appColorPriAccent: #88c0d0;
+	--appColorPrimary: #88c0d0;
+	--appColorPriAccent: #5e81ac;
 	--appBGColor: #2e3440;
 	--appBGColorAccent1: #3b4252;
 	--appBGColorAccent2: #434c5e;

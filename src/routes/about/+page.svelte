@@ -16,17 +16,29 @@
 		<div class="navSection">
 			<a class="backButton" href="{base}/">BACK</a>
 		</div>
-		<div class="versionSection">
-			<p class="version">Version: {version}</p>
-		</div>
 	</header>
 	<main>
 		<h1><span class="logo1">Place</span><span class="logo2">It</span></h1>
-		<p>A game about numbers and places made by Wyatt Rice and Casey Chock using SvelteKit.</p>
-	</main>
-	<footer>
+		<p class="version">Version: {version}</p>
+		<div class="aboutText">
+			<p>A fun little game about numbers and places made purely for learning and achievement!</p>
+			<div class="credits">
+				<div class="credit">
+					<h2>Designed by</h2>
+					<p>Wyatt Rice</p>
+				</div>
+				<div class="credit">
+					<h2>Developed by</h2>
+					<p>Casey Chock</p>
+				</div>
+			</div>
+			<p>Technology used: <a href="https://kit.svelte.dev/" target="_blank" rel="noreferrer noopener">SvelteKit</a></p>
+			<p><a href="https://github.com/Dae314/placeit-game" target="_blank" rel="noreferrer noopener">https://github.com/Dae314/placeit-game</a></p>
+			<p>This project is open source and licensed under the MIT License.</p>
+			<p>This app runs entirely in your browser and does not rely on any analytics. All data is stored locally on your device!</p>
+		</div>
 		<button type="button" class="clearStatsButton" on:click={clearData}>CLEAR DATA</button>
-	</footer>
+	</main>
 </div>
 
 <style lang="scss">
@@ -38,7 +50,7 @@
 		position: relative;
 		width: 100%;
 	}
-	header, footer, main {
+	header, main {
 		width: 75%;
 	}
 	header {
@@ -71,26 +83,17 @@
 				}
 			}
 		}
-		.versionSection {
-			display: flex;
-			justify-content: flex-end;
-			width: 50%;
-			.version {
-				margin: 0;
-			}
-		}
-		
 	}
 	main {
 		align-items: center;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		justify-content: center;
 		h1 {
 			font-family: 'Courier New', Courier, monospace;
 			font-size: 3rem;
 			margin: 0;
-			margin-bottom: 10px;
 			.logo1 {
 				color: var(--appLogoColor1);
 			}
@@ -98,12 +101,36 @@
 				color: var(--appLogoColor2);
 			}
 		}
-	}
-	footer {
-		bottom: 0;
-		display: flex;
-		position: absolute;
-		justify-content: flex-end;
+		h2 {
+			margin: 5px 0px;
+		}
+		.version {
+			color: var(--appLogoColor2);
+			font-size: 0.9rem;
+			margin: -10px 0 10px 0;
+		}
+		.aboutText {
+			margin: 10px 0px;
+			text-align: center;
+			p {
+				margin: 0;
+				margin-bottom: 10px;
+			}
+			a {
+				color: var(--appColorPrimary);
+				&:visited {
+					color: var(--appColorPriAccent);
+				}
+			}
+		}
+		.credits {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 10px;
+			.credit {
+				margin: 0px 20px;
+			}
+		}
 		.clearStatsButton {
 			font-size: 1.5rem;
 		}
@@ -112,8 +139,16 @@
 		.container {
 			align-items: flex-start;
 		}
-		header, footer, main {
-			width: 100%;
+		header, main {
+			width: 98%;
+		}
+	}
+	@media (max-width: 319px) {
+		main {
+			font-size: 0.8rem;
+			h2 {
+				font-size: 1.2rem;
+			}
 		}
 	}
 </style>

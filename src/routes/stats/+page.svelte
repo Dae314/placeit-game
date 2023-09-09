@@ -6,6 +6,10 @@
 	const defaultString = 'NONE';
 </script>
 
+<svelte:head>
+	<title>PlaceIt | Stats</title>
+</svelte:head>
+
 <div class="container">
 	<div class="header">
 		<a href="{base}/" class="backButton">BACK</a>

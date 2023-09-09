@@ -10,6 +10,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>PlaceIt | A game about numbers and places</title>
+</svelte:head>
+
 <div class="container">
 	<h1><span class="logo1">Place</span><span class="logo2">It</span></h1>
 	<h2>A game about numbers and places</h2>

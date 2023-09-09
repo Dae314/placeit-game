@@ -192,6 +192,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>PlaceIt | Play</title>
+</svelte:head>
+
 <div class="navigation">
 	<a href="{base}/" class="backButton">BACK</a>
 </div>

@@ -11,6 +11,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>PlaceIt | About the app</title>
+</svelte:head>
+
 <div class="container">
 	<header>
 		<div class="navSection">

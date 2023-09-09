@@ -13,6 +13,7 @@
 
 <svelte:head>
 	<title>PlaceIt | About the app</title>
+	<meta name="description" content="About PlaceIt">
 </svelte:head>
 
 <div class="container">

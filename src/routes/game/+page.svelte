@@ -205,6 +205,7 @@
 
 <svelte:head>
 	<title>PlaceIt | Play</title>
+	<meta name="description" content="Play PlaceIt">
 </svelte:head>
 
 <div class="navigation">

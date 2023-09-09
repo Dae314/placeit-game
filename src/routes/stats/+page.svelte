@@ -8,6 +8,7 @@
 
 <svelte:head>
 	<title>PlaceIt | Stats</title>
+	<meta name="description" content="PlaceIt Player Stats">
 </svelte:head>
 
 <div class="container">

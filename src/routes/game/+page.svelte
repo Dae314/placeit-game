@@ -170,7 +170,14 @@
 	function copyResultToClipboard() {
 		const flavorText = `I placed ${score} out of ${numBuckets} tiles in ${finalTime} on PlaceIt!`;
 		const boardState = convertBucketListToEmotes();
-		const promo = "Can you place more? https://placeitgame.app"
+		let promo;
+		if(bucketList.every(e => e.value !== null)) {
+			// win
+			promo = "Can you do it faster? https://placeitgame.app"
+		} else {
+			// loss
+			promo = "Can you place more? https://placeitgame.app"
+		}
 		const result = `${flavorText}\n\n${boardState}\n\n${promo}`;
 		navigator.clipboard.writeText(result);
 		$Alert = { level: 'info', message: 'COPIED TO CLIPBOARD' };

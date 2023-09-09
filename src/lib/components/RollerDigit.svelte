@@ -47,7 +47,7 @@
 
 <style>
 	.digit {
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
 		font-weight: bold;
 		opacity: 0.2;
 		transition: opacity 0.3s ease-in;

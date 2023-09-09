@@ -288,7 +288,7 @@
 	.timeArea {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
 		margin-bottom: 15px;
 		p {
 			margin: 0;
@@ -365,7 +365,7 @@
 		top: 0;
 		width: 100%;
 		.gameOverText {
-			font-family: Arial, Helvetica, sans-serif;
+			font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
 			font-weight: bold;
 			font-size: 6rem;
 			font-weight: bold;
@@ -392,7 +392,7 @@
 			button {
 				background-color: rgba(94, 129, 172, 0.50);
 				color: var(--appTextColor);
-				font-family: Verdana;
+				font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
 				font-size: 1.2rem;
 				&:hover {
 					background-color: rgba(94, 129, 172, 0.75);

@@ -1,8 +1,6 @@
 import { writable, get } from 'svelte/store';
 import { error } from '@sveltejs/kit';
 
-let appdata; // temporary object to build AppData
-
 // utility function returns true iff data is an object (and nothing else)
 function isObject(data) {
 	// https://javascript.plainenglish.io/javascript-check-if-a-variable-is-an-object-and-nothing-else-not-an-array-a-set-etc-a3987ea08fd7
@@ -34,7 +32,7 @@ function objTemplate(template, obj) {
 }
 
 // function to build or add in new app data top level structures
-function buildAppData(data) {
+export function buildAppData(data) {
 	// reset option causes the associated prop to be reset to default every time the app loads
 	const expectedAppDataProps = [
 		{name: 'playerStats', default: {}, reset: false},
@@ -75,12 +73,4 @@ export function makeCleanAppData() {
 	return buildAppData({});
 }
 
-if(window.localStorage.getItem('AppData') !== null) {
-	// Load AppData from localstorage if it exists
-	appdata = JSON.parse(window.localStorage.getItem('AppData'));
-	appdata = buildAppData(appdata);
-} else {
-	appdata = makeCleanAppData();
-}
-
-export const AppData = writable(appdata);
+export const AppData = writable(makeCleanAppData());

@@ -4,9 +4,9 @@
 	import { AppData, makeCleanAppData, saveAppData } from '$lib/stores/AppData.js';
 	import { Alert } from '$lib/stores/Alert.js';
 
-	function clearData() {
+	async function clearData() {
 		$AppData = makeCleanAppData();
-		saveAppData();
+		await saveAppData();
 		$Alert = { level: 'info', message: 'SUCCESSFULLY CLEARED DATA' };
 	}
 </script>

@@ -1,13 +1,10 @@
 <script>
 	import { getContext } from "svelte";
 	import { base } from '$app/paths';
-	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 
 	const { close } = getContext('simple-modal');
 
 	function closeModal() {
-		$AppData.appSettings.showRules = false;
-		saveAppData();
 		close();
 	}
 </script>

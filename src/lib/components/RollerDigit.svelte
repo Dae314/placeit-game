@@ -1,5 +1,7 @@
 <script>
 	// Originally from: https://svelte.dev/repl/1ed2971a5b594fde94a31bfdd11cfc18?version=3.42.6
+	import { onMount } from "svelte";
+
 	export let number;
 	let lineHeight = 120;
 	const digits = ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -9,12 +11,14 @@
 		return -(n + 1) * lineHeight;
 	}
 
-	const widthDesktopListener = window.matchMedia("(min-width: 740px)");
-	const width740Listener = window.matchMedia("(max-width: 740px)");
-	const width330Listener = window.matchMedia("(max-width: 330px)");
-	widthDesktopListener.addEventListener('change', widthDesktopHandler);
-	width740Listener.addEventListener('change', width740Handler);
-	width330Listener.addEventListener('change', width330Handler);
+	onMount(async () => {
+		const widthDesktopListener = window.matchMedia("(min-width: 740px)");
+		const width740Listener = window.matchMedia("(max-width: 740px)");
+		const width330Listener = window.matchMedia("(max-width: 330px)");
+		widthDesktopListener.addEventListener('change', widthDesktopHandler);
+		width740Listener.addEventListener('change', width740Handler);
+		width330Listener.addEventListener('change', width330Handler);
+	});
 
 	function widthDesktopHandler(e) {
 		if(e.matches) {

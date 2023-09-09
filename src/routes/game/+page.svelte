@@ -1,5 +1,6 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
+	import { browser } from '$app/environment';
 	import { base } from '$app/paths';
 	import { scale } from 'svelte/transition';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
@@ -20,7 +21,7 @@
 	let showGameOver = false;
 	let dismissGameOver = false;
 	let score = 0;
-	let startTime = window.performance.now();
+	let startTime;
 	let stopTime;
 	let finalTime;
 	let lastFrameTime;
@@ -33,7 +34,9 @@
 	});
 
 	onDestroy(() => {
-		window.cancelAnimationFrame(frame);
+		if(browser) {
+			window.cancelAnimationFrame(frame);
+		}
 	});
 
 	function updateElapsedTime(timestamp) {
@@ -122,7 +125,7 @@
 		}
 	}
 
-	function checkWinLoss() {
+	async function checkWinLoss() {
 		let state;
 		if(bucketList.every(e => e.value !== null)) {
 			state = 'win';
@@ -158,7 +161,7 @@
 				if(bucketList[0].value > $AppData.playerStats.highestFirstBucket) $AppData.playerStats.highestFirstBucket = bucketList[0].value;
 				if(bucketList[numBuckets-1] < $AppData.playerStats.lowestLastBucket) $AppData.playerStats.lowestLastBucket = bucketList[numBuckets-1].value;
 			}
-			saveAppData();
+			await saveAppData();
 
 			// show gameover screen
 			setTimeout(() => showGameOver = true, gameOverDelay);

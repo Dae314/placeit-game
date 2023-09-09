@@ -3,6 +3,7 @@
 	import { scale, fade } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import { Alert } from '$lib/stores/Alert.js';
+	import { PUBLIC_PROD_URI } from '$env/static/public';
 	import '../app.css';
 
 	$: showNotification($Alert);
@@ -29,6 +30,13 @@
 		}, alertVisibleDuration);
 	}
 </script>
+
+<svelte:head>
+	<meta property="og:title" content="PlaceIt" />
+	<meta property="og:description" content="Play PlaceIt" />
+	<meta property="og:image" content="{PUBLIC_PROD_URI}/og_resources/banner.jpg" />
+	<meta property="og:url" content="{PUBLIC_PROD_URI}" />
+</svelte:head>
 
 
 {#key data.pathname}

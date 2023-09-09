@@ -5,33 +5,49 @@
 		<link rel="icon" href="./favicon.jpg" />
 		<meta name="viewport" content="width=device-width" />
 		
-		<link rel="modulepreload" href="./_app/immutable/entry/start.4e0544a0.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.9657a15e.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.39a3083c.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.dfc324f0.js">
+		<link href="./_app/immutable/assets/0.83a88050.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/5.c82c3587.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.ba8e99c5.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.407f67a1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.b1b79223.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.a5019733.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/paths.379e7418.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/environment.8022007b.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/control.f5b05b5f.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.1c07c39d.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.ab4fc0a5.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.b1518c69.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/AppData.725ebf90.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.e89b7c83.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.8568a664.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.1030b2d1.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/Alert.39c2dfbf.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/5.f6dfc0e8.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/formatTime.5f24a19a.js"><title>PlaceIt | Stats</title><!-- HEAD_svelte-aypddb_START --><meta property="og:title" content="PlaceIt"><meta property="og:description" content="Play PlaceIt"><meta property="og:image" content="https://dae314.github.io/placeit-game/og_resources/banner.jpg"><meta property="og:url" content="https://dae314.github.io/placeit-game"><!-- HEAD_svelte-aypddb_END --><!-- HEAD_svelte-jqc1sn_START --><!-- HEAD_svelte-jqc1sn_END -->
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">
+		<div style="display: contents">   <div class="appContainer svelte-17gip97">   <div class="container svelte-1xanv6m"><div class="header svelte-1xanv6m" data-svelte-h="svelte-bnqdop"><a href="/placeit-game/" class="backButton svelte-1xanv6m">BACK</a> <h1 class="svelte-1xanv6m">STATS</h1></div> <div class="statsArea svelte-1xanv6m"><div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-161znvo">TOTAL GAMES PLAYED</span><span class="statValue svelte-1xanv6m">0</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-wy2o59">TOTAL GAMES WON</span><span class="statValue svelte-1xanv6m">0</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-1yk390v">MOST TILES PLACED</span><span class="statValue svelte-1xanv6m">0</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-x01yvu">LARGEST NUMBER PLACED</span><span class="statValue svelte-1xanv6m">NONE</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-1yg17mx">SMALLEST NUMBER PLACED</span><span class="statValue svelte-1xanv6m">NONE</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-x8299o">SHORTEST WIN</span><span class="statValue svelte-1xanv6m">0:00</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-1ind4gg">LONGEST WIN</span><span class="statValue svelte-1xanv6m">0:00</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-1sd6g3b">LARGEST NUMBER ON FIRST TILE (WIN)</span><span class="statValue svelte-1xanv6m">NONE</span></div> <div class="statCard svelte-1xanv6m"><span class="statDesc" data-svelte-h="svelte-1vqwtji">SMALLEST NUMBER ON LAST TILE (WIN)</span><span class="statValue svelte-1xanv6m">NONE</span></div></div> </div> </div> 
+			
 			<script>
 				{
 					__sveltekit_1wnehg = {
 						assets: "/placeit-game",
 						base: new URL(".", location).pathname.slice(0, -1),
-						env: {}
+						env: {"PUBLIC_PROD_URI":"https://dae314.github.io/placeit-game"}
 					};
 
 					const element = document.currentScript.parentElement;
 
+					const data = [null,null];
+
 					Promise.all([
-						import("./_app/immutable/entry/start.4e0544a0.js"),
-						import("./_app/immutable/entry/app.1c07c39d.js")
+						import("./_app/immutable/entry/start.ba8e99c5.js"),
+						import("./_app/immutable/entry/app.b1518c69.js")
 					]).then(([kit, app]) => {
-						kit.start(app, element);
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data,
+							form: null,
+							error: null
+						});
 					});
 				}
 			</script>

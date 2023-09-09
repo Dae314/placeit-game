@@ -2,7 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 	import { base } from '$app/paths';
-	import { scale } from 'svelte/transition';
+	import { scale, fade, fly } from 'svelte/transition';
 	import { AppData, saveAppData } from '$lib/stores/AppData.js';
 	import { Alert } from '$lib/stores/Alert.js';
 	import RollerDisplay from '$lib/components/RollerDisplay.svelte';
@@ -19,7 +19,6 @@
 	let rollResult;
 	let bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 	let showGameOver = false;
-	let dismissGameOver = false;
 	let score = 0;
 	let startTime;
 	let stopTime;
@@ -56,8 +55,8 @@
 		}
 		bucketList = new Array(numBuckets).fill().map(() => { return {disabled: false, value: null} });
 
-		dismissGameOver = true;
-		setTimeout(() => { showGameOver = false; dismissGameOver = false; startTime = window.performance.now(); lastFrameTime = startTime; frame = window.requestAnimationFrame(updateElapsedTime); }, gameOverAnimationTime);
+		showGameOver = false;
+		setTimeout(() => { startTime = window.performance.now(); lastFrameTime = startTime; frame = window.requestAnimationFrame(updateElapsedTime); }, gameOverAnimationTime);
 		stopTime = {};
 
 		drawRandom();
@@ -177,16 +176,28 @@
 		$Alert = { level: 'info', message: 'COPIED TO CLIPBOARD' };
 	}
 
-	function convertBucketListToEmotes() {
+	function convertBucketListToEmotes(style = "text") {
 		const cols = 5;
 		let result = '';
+		let linesep;
+		let emptyBucket;
+		let filledBucket;
+		if(style === 'html') {
+			emptyBucket = '&#x2B1B;';
+			filledBucket = '&#x1F7E9;';
+			linesep = '<br/>';
+		} else {
+			emptyBucket = '⬛';
+			filledBucket = '🟩'
+			linesep = '\n';
+		}
 		for(const [i, bucket] of bucketList.entries()) {
 			if(bucket.value === null) {
-				result = result + '⬛';
+				result = result + emptyBucket;
 			} else {
-				result = result + '🟩';
+				result = result + filledBucket;
 			}
-			if((i + 1) % cols === 0) result = result + '\n';
+			if((i + 1) % cols === 0) result = result + linesep;
 		}
 		return result.trim();
 	}
@@ -223,16 +234,19 @@
 	</div>
 </div>
 
-<div class="gameOverOverlay" class:visible={showGameOver} class:dismissAnimation={dismissGameOver} style="--gameOverAnimationTime: {gameOverAnimationTime}ms">
-	<span class="gameOverText" class:textVisible={showGameOver} class:dismissTextAnimation={dismissGameOver}>GAME OVER</span>
-	<div class="statsArea">
-		<p>You placed {score} out of {numBuckets} tiles in {finalTime}!</p>
+{#if showGameOver}
+	<div class="gameOverOverlay" transition:fade={{duration: gameOverAnimationTime}}>
+		<span class="gameOverText" transition:fly={{duration: gameOverAnimationTime, y: '-250px'}}>GAME OVER</span>
+		<div class="statsArea">
+			<p>You placed {score} out of {numBuckets} tiles in {finalTime}!</p>
+			<div class="boardDisplay">{@html convertBucketListToEmotes('html')}</div>
+		</div>
+		<div class="buttonArea">
+			<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
+			<button class="shareButton" type="button" on:click={copyResultToClipboard}>SHARE</button>
+		</div>
 	</div>
-	<div class="buttonArea">
-		<button class="playAgainButton" type="button" on:click={reset}>RETRY</button>
-		<button class="shareButton" type="button" on:click={copyResultToClipboard}>SHARE</button>
-	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	.container {
@@ -347,33 +361,15 @@
 		height: 100%;
 		justify-content: center;
 		left: 0;
-		opacity: 0;
 		position: absolute;
 		top: 0;
-		transition: opacity var(--gameOverAnimationTime);
-		visibility: hidden;
 		width: 100%;
 		.gameOverText {
 			font-family: "Arial Black";
 			font-size: 6rem;
 			font-weight: bold;
 			position: relative;
-			top: -55%;
-			transition: top var(--gameOverAnimationTime);
 			user-select: none;
-			&.textVisible {
-				top: 0%;
-			}
-			&.dismissTextAnimation {
-				top: -55%;
-			}
-		}
-		&.visible {
-			opacity: 1;
-			visibility: visible;
-		}
-		&.dismissAnimation {
-			opacity: 0;
 		}
 		.statsArea {
 			margin-bottom: 27px;
@@ -381,6 +377,13 @@
 				font-size: 1.5rem;
 				margin: 0;
 				user-select: none;
+			}
+			.boardDisplay {
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				margin-top: 15px;
 			}
 		}
 		.buttonArea {

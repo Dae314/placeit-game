@@ -412,6 +412,7 @@
 	@media (max-width: 740px) {
 		.container {
 			justify-content: flex-start;
+			padding-top: 25px;
 		}
 		.tableArea {
 			grid-auto-rows: 100px;

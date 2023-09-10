@@ -11,7 +11,7 @@
 
 <div class="container">
 	<h2>How to Play</h2>
-	<video autoplay loop>
+	<video autoplay loop playsinline>
 		<source src="{base}/rules_resources/rules.webm" type="video/webm" />
 		<source src="{base}/rules_resources/rules.mp4" type="video/mp4" />
 	</video>

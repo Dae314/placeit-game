@@ -470,10 +470,10 @@
 	}
 	@media (max-width: 480px) {
 		.tableArea {
-			grid-auto-rows: 80px;
-			grid-template-columns: repeat(auto-fill, 80px);
+			grid-auto-rows: 70px;
+			grid-template-columns: repeat(auto-fill, 70px);
 			grid-gap: 10px;
-			max-width: 350px;
+			max-width: 390px;
 		}
 		.gameOverOverlay {
 			.gameOverText {
@@ -499,21 +499,22 @@
 			}
 		}
 		.tableArea {
-			grid-auto-rows: 70px;
-			grid-template-columns: repeat(auto-fill, 70px);
-			grid-gap: 8px;
-			max-width: 304px;
+			grid-auto-rows: 55px;
+			grid-template-columns: repeat(auto-fill, 55px);
+			grid-gap: 10px;
+			max-width: 315px;
 		}
 		.bucketButton {
 			font-size: 2rem;
+			border-radius: 15px 15px 0px 0px;
 		}
 	}
 	@media (max-width: 330px) {
 		.tableArea {
-			grid-auto-rows: 60px;
-			grid-template-columns: repeat(auto-fill, 60px);
-			grid-gap: 8px;
-			max-width: 264px;
+			grid-auto-rows: 50px;
+			grid-template-columns: repeat(auto-fill, 50px);
+			grid-gap: 10px;
+			max-width: 290px;
 		}
 		.bucketButton {
 			font-size: 1.5rem;
@@ -538,10 +539,13 @@
 	}
 	@media (max-width: 290px) {
 		.tableArea {
-			grid-auto-rows: 50px;
-			grid-template-columns: repeat(auto-fill, 50px);
-			grid-gap: 5px;
-			max-width: 215px;
+			grid-auto-rows: 40px;
+			grid-template-columns: repeat(auto-fill, 40px);
+			grid-gap: 10px;
+			max-width: 240px;
+		}
+		.bucketButton {
+			border-radius: 10px 10px 0px 0px;
 		}
 	}
 </style>

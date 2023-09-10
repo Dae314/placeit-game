@@ -470,6 +470,9 @@
 		}
 	}
 	@media (max-width: 480px) {
+		.bucketButton {
+			font-size: 1.8rem;
+		}
 		.tableArea {
 			grid-auto-rows: 70px;
 			grid-template-columns: repeat(auto-fill, 70px);
@@ -506,7 +509,7 @@
 			max-width: 315px;
 		}
 		.bucketButton {
-			font-size: 2rem;
+			font-size: 1.7rem;
 			border-radius: 15px 15px 0px 0px;
 		}
 	}

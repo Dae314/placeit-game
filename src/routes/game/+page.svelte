@@ -140,8 +140,9 @@
 			const finalTimeMs = stopTime - startTime;
 			finalTime = formatTime(finalTimeMs);
 			score = bucketList.filter(e => e.value !== null).length;
+			const reverseBucketList = [...bucketList].reverse();
 			const minBucket = bucketList.find(e => e.value);
-			const maxBucket = bucketList.toReversed().find(e => e.value);
+			const maxBucket = reverseBucketList.find(e => e.value);
 
 			// update player statistics
 			$AppData.playerStats.totalGames++;

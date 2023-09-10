@@ -3,7 +3,10 @@
 	import { onMount } from "svelte";
 
 	export let number;
-	let lineHeight = 120;
+	const widthDesktopHeight = 120;
+	const width740Height = 100;
+	const width330Height = 75;
+	let lineHeight = width330Height;
 	const digits = ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 	function calculateOffset(n) {
@@ -18,6 +21,13 @@
 		widthDesktopListener.addEventListener('change', widthDesktopHandler);
 		width740Listener.addEventListener('change', width740Handler);
 		width330Listener.addEventListener('change', width330Handler);
+		if(width330Listener.matches) {
+			lineHeight = width330Height;
+		} else if(width740Listener.matches) {
+			lineHeight = width740Height;
+		} else {
+			lineHeight = widthDesktopHeight;
+		}
 	});
 
 	function widthDesktopHandler(e) {

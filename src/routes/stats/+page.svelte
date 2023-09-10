@@ -35,6 +35,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		padding-bottom: 30px;
 	}
 	.header {
 		align-items: center;

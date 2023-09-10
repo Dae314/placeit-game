@@ -347,7 +347,8 @@
 		}
 	}
 	.unusedBucketText {
-		opacity: 0.05;
+		color: var(--appTextColor);
+		opacity: 0.25;
 	}
 	.underline {
 		background-color: var(--appAccentColor);
@@ -545,6 +546,7 @@
 			max-width: 240px;
 		}
 		.bucketButton {
+			font-size: 1.2rem;
 			border-radius: 10px 10px 0px 0px;
 		}
 	}

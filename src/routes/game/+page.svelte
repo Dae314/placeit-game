@@ -158,7 +158,7 @@
 				if($AppData.playerStats.fastestWin === null || finalTimeMs < $AppData.playerStats.fastestWin) $AppData.playerStats.fastestWin = finalTimeMs;
 				if($AppData.playerStats.slowestWin === null || finalTimeMs > $AppData.playerStats.slowestWin) $AppData.playerStats.slowestWin = finalTimeMs;
 				if(bucketList[0].value > $AppData.playerStats.highestFirstBucket) $AppData.playerStats.highestFirstBucket = bucketList[0].value;
-				if(bucketList[numBuckets-1] < $AppData.playerStats.lowestLastBucket) $AppData.playerStats.lowestLastBucket = bucketList[numBuckets-1].value;
+				if(bucketList[numBuckets-1].value < $AppData.playerStats.lowestLastBucket) $AppData.playerStats.lowestLastBucket = bucketList[numBuckets-1].value;
 			}
 			await saveAppData();
 

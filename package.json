@@ -9,14 +9,15 @@
 		"deploy": "npm run build && gh-pages -r https://github.com/Dae314/placeit-game -d build -t true"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-static": "^2.0.3",
-		"@sveltejs/kit": "^1.20.4",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-static": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"gh-pages": "^6.0.0",
 		"sass": "^1.66.1",
 		"svelte": "^4.0.5",
 		"svelte-simple-modal": "^1.6.1",
-		"vite": "^4.4.2"
+		"vite": "^5.0.0"
 	},
 	"type": "module"
 }

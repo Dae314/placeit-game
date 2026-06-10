@@ -6,7 +6,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
-		"deploy": "npm run build && gh-pages -r https://github.com/Dae314/placeit-game -d build -t true"
+		"deploy": "npm run build && gh-pages -r https://github.com/Dae314/placeit-game -d build -t"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",

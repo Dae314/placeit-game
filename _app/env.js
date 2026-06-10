@@ -1,1 +1,0 @@
-export const env={"PUBLIC_PROD_URI":"https://placeitgame.app","PUBLIC_PROD_DOMAIN":"placeitgame.app"}

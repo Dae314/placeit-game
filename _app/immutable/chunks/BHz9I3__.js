@@ -1,0 +1,1 @@
+import{tt as e}from"./Dxd8gkYO.js";var t=e({level:``,message:``});export{t};

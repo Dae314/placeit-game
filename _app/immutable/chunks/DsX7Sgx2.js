@@ -1,0 +1,1 @@
+function e(e){if(!Number.isInteger(Math.floor(e)))return`0:00`;let t=Math.floor(e/6e4),n=(e%6e4/1e3).toFixed(0);return`${t}:${n<10?`0`:``}${n}`}export{e as t};

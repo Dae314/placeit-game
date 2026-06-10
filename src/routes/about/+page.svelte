@@ -41,6 +41,7 @@
 			<p><a href="https://github.com/Dae314/placeit-game" target="_blank" rel="noreferrer noopener nofollow">https://github.com/Dae314/placeit-game</a></p>
 			<p>This project is open source and licensed under the MIT License.</p>
 			<p>This app runs entirely in your browser and does not rely on any analytics. All data is stored locally on your device!</p>
+			<p>No AI was used in the creation of this app.</p>
 		</div>
 		<button type="button" class="clearStatsButton" on:click={clearData}>CLEAR DATA</button>
 	</main>
